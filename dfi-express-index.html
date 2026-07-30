@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Financeiro Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2C3A2A;
+    --paper:#E7DFC6;
+    --card:#FBF8EF;
+    --line:#C6BB98;
+    --line-soft:#DCD1AC;
+    --green:#3E6B4C;
+    --green-soft:#DEE6DA;
+    --amber:#B4862A;
+    --amber-soft:#EFE3C0;
+    --red:#A3512E;
+    --red-soft:#EDDCCC;
+    --slate:#6E6650;
+    --muted:#8C8368;
+    --madeira:#7A4B2E;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(44,58,42,0.06) 1px, transparent 0);
+    background-size:22px 22px;
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{
+    position:relative; z-index:1;
+    max-width:640px;
+    margin:0 auto;
+    padding:32px 20px 80px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+  h1.masthead{
+    font-family:'Fraunces',serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(28px,6vw,38px);
+    line-height:1.05;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .masthead em{font-style:italic; font-weight:500; color:var(--slate);}
+  .sub{
+    font-size:15px;
+    color:var(--slate);
+    line-height:1.5;
+    margin:0 0 28px;
+    max-width:56ch;
+  }
+
+  /* ---- Card shell shared by intro/form/report ---- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    position:relative;
+    box-shadow:0 1px 0 rgba(22,33,43,0.02);
+  }
+  .card + .card{margin-top:16px;}
+
+  /* Intro */
+  .intro-card{padding:28px 24px 26px;}
+  .intro-list{list-style:none; margin:20px 0 0; padding:0; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink);}
+  .intro-list li{
+    display:flex; gap:10px; padding:9px 0;
+    border-top:1px dashed var(--line-soft);
+  }
+  .intro-list li:first-child{border-top:none;}
+  .intro-list .n{color:var(--muted); min-width:16px;}
+  .cta-btn{
+    appearance:none; border:none; cursor:pointer;
+    background:var(--ink); color:var(--paper);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+    padding:14px 22px;
+    border-radius:2px;
+    width:100%;
+    margin-top:22px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .cta-btn:hover{background:#1C2619;}
+  .cta-btn:active{transform:scale(0.98);}
+  .cta-btn.ghost{
+    background:transparent; color:var(--ink); border:1px solid var(--ink);
+  }
+  .cta-btn.ghost:hover{background:var(--ink); color:var(--paper);}
+  .fine{font-size:11.5px; color:var(--muted); text-align:center; margin-top:12px; font-family:'IBM Plex Mono',monospace;}
+
+  /* ---- Form ---- */
+  .progress-row{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .progress-track{flex:1; height:3px; background:var(--line-soft); position:relative; border-radius:2px; overflow:hidden;}
+  .progress-fill{height:100%; background:var(--ink); width:0%; transition:width .35s ease;}
+  .progress-label{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--slate); white-space:nowrap;}
+
+  .form-card{padding:26px 24px 24px;}
+  .step{display:none;}
+  .step.active{display:block; animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  .q-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;}
+  .q-title{font-family:'Fraunces',serif; font-weight:600; font-size:21px; line-height:1.3; margin:0 0 18px;}
+
+  .field{margin-bottom:16px;}
+  .field label.small{display:block; font-size:12.5px; color:var(--slate); margin-bottom:6px; font-family:'IBM Plex Mono',monospace;}
+  .field input[type=text],
+  .field input[type=number]{
+    width:100%; padding:12px 13px; font-size:16px;
+    border:1px solid var(--line); border-radius:2px;
+    background:#fff; color:var(--ink); font-family:'Inter',sans-serif;
+  }
+  .field input:focus{outline:none; border-color:var(--ink);}
+  .prefix-input{position:relative;}
+  .prefix-input span{
+    position:absolute; left:13px; top:50%; transform:translateY(-50%);
+    font-family:'IBM Plex Mono',monospace; color:var(--muted); font-size:14px;
+    pointer-events:none; z-index:1;
+  }
+  .field .prefix-input input[type=number],
+  .field .prefix-input input[type=text]{padding-left:40px !important;}
+  .suffix-input{position:relative;}
+  .suffix-input span{
+    position:absolute; right:13px; top:50%; transform:translateY(-50%);
+    font-family:'IBM Plex Mono',monospace; color:var(--muted); font-size:13px;
+    pointer-events:none; z-index:1;
+  }
+  .field .suffix-input input[type=number],
+  .field .suffix-input input[type=text]{padding-right:52px !important;}
+
+  .opt-grid{display:flex; flex-direction:column; gap:8px;}
+  .opt{
+    border:1px solid var(--line); border-radius:2px; padding:13px 14px;
+    cursor:pointer; font-size:14.5px; display:flex; justify-content:space-between; align-items:center;
+    background:#fff; transition:border-color .15s, background .15s;
+  }
+  .opt:hover{border-color:var(--ink);}
+  .opt.selected{border-color:var(--ink); background:var(--ink); color:var(--paper);}
+  .opt .tick{font-family:'IBM Plex Mono',monospace; font-size:12px; opacity:0.6;}
+
+  .nav-row{display:flex; gap:10px; margin-top:22px;}
+  .consent-row{
+    display:flex; align-items:flex-start; gap:10px; margin-top:20px;
+    padding:13px 14px; border:1px solid var(--line); border-radius:2px; background:#fff;
+    font-size:13px; line-height:1.5; color:var(--ink); cursor:pointer;
+  }
+  .consent-row input[type=checkbox]{
+    margin-top:2px; width:16px; height:16px; flex:0 0 16px; accent-color:var(--ink); cursor:pointer;
+  }
+  .nav-row .cta-btn{margin-top:0;}
+  .nav-row .back{flex:0 0 90px;}
+  .nav-row .next{flex:1;}
+  .cta-btn:disabled{opacity:0.35; cursor:not-allowed;}
+  .cta-btn:disabled:hover{background:var(--ink);}
+
+  /* ---- Report ---- */
+  .ticket{
+    background:var(--card);
+    border:1px solid var(--line);
+    position:relative;
+    overflow:visible;
+  }
+  .perf{
+    height:12px; width:100%;
+    background-image:radial-gradient(circle at 6px 6px, var(--paper) 5px, transparent 5.5px);
+    background-size:12px 12px;
+    background-position:0 0;
+  }
+  .ticket-inner{padding:26px 24px 8px;}
+  .ticket-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px;}
+  .ticket-head .id{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted);}
+  .ticket-head .brand{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--slate); text-align:right;}
+
+  .gauge-wrap{display:flex; flex-direction:column; align-items:center; margin:8px 0 20px;}
+  .gauge-name{font-family:'Fraunces',serif; font-size:15px; color:var(--slate); margin-bottom:2px;}
+  .gauge-score{font-family:'Fraunces',serif; font-weight:700; font-size:56px; line-height:1;}
+  .gauge-score span{font-size:22px; color:var(--muted); font-weight:500;}
+  .gauge-tag{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:5px 12px; border-radius:20px; margin-top:10px;
+  }
+  .tag-green{background:var(--green-soft); color:var(--green);}
+  .tag-amber{background:var(--amber-soft); color:var(--amber);}
+  .tag-red{background:var(--red-soft); color:var(--red);}
+
+  .section-label{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); margin:26px 0 12px; display:flex; align-items:center; gap:8px;
+  }
+  .section-label::after{content:""; flex:1; height:1px; background:var(--line-soft);}
+
+  .reading{
+    display:grid; grid-template-columns:1fr auto auto; gap:10px 14px; align-items:center;
+    padding:10px 0; border-top:1px dashed var(--line-soft); font-size:13.5px;
+  }
+  .reading:first-of-type{border-top:none;}
+  .reading .r-name{font-weight:500;}
+  .reading .r-val{font-family:'IBM Plex Mono',monospace; text-align:right; font-size:12.5px;}
+  .reading .r-bar{grid-column:1 / -1; height:5px; background:var(--line-soft); border-radius:3px; overflow:hidden; margin-top:2px;}
+  .reading .r-fill{height:100%; border-radius:3px;}
+  .fill-green{background:var(--green);}
+  .fill-amber{background:var(--amber);}
+  .fill-red{background:var(--red);}
+
+  .diag-block{
+    background:var(--paper); border:1px solid var(--line-soft); border-radius:2px;
+    padding:16px 16px; margin-top:4px; font-size:14.5px; line-height:1.55;
+  }
+  .diag-block strong{font-family:'Fraunces',serif; font-weight:600; font-size:16px; display:block; margin-bottom:6px;}
+
+  .priorities{list-style:none; margin:0; padding:0;}
+  .priorities li{
+    display:flex; gap:12px; padding:12px 0; border-top:1px dashed var(--line-soft); font-size:14.5px; line-height:1.5;
+  }
+  .priorities li:first-child{border-top:none;}
+  .priorities .pnum{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);
+    border:1px solid var(--line); border-radius:50%; width:22px; height:22px;
+    flex:0 0 22px; display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  .disclaimer{
+    font-size:11.5px; color:var(--muted); line-height:1.5; margin-top:22px;
+    border-top:1px solid var(--line-soft); padding-top:14px; font-family:'IBM Plex Mono',monospace;
+  }
+
+  .info-row{
+    display:flex; justify-content:space-between; gap:14px;
+    padding:8px 0; border-top:1px dashed var(--line-soft); font-size:13px;
+  }
+  .info-row:first-of-type{border-top:none;}
+  .info-row .i-label{color:var(--slate);}
+  .info-row .i-val{font-family:'IBM Plex Mono',monospace; text-align:right; color:var(--ink);}
+
+  .pitch-card{
+    padding:24px; margin-top:16px; text-align:center;
+    background:var(--ink); color:var(--paper); border:none;
+  }
+  .pitch-card .q-eyebrow{color:#9aa39c;}
+  .pitch-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:20px; margin:6px 0 10px;}
+  .pitch-card p{font-size:14px; color:#C7CDC5; line-height:1.55; margin:0 0 18px;}
+  .pitch-card .cta-btn{background:var(--paper); color:var(--ink);}
+  .pitch-card .cta-btn:hover{background:#fff;}
+
+  .restart{
+    display:block; text-align:center; margin-top:18px; font-family:'IBM Plex Mono',monospace;
+    font-size:12px; color:var(--slate); text-decoration:underline; cursor:pointer; background:none; border:none; width:100%;
+  }
+
+  @media (max-width:420px){
+    .wrap{padding:22px 14px 60px;}
+    .gauge-score{font-size:46px;}
+  }
+
+  @media print{
+    body::before{display:none;}
+    body{background:#fff;}
+    .eyebrow, h1.masthead, .sub, #screen-intro, #screen-form, .pitch-card, .restart, .no-print{display:none !important;}
+    .wrap{padding:0; max-width:100%;}
+    .ticket{border:none;}
+    .perf{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow"><span class="dot"></span>Diagnóstico Financeiro · Versão Express</div>
+  <h1 class="masthead">Onde seu dinheiro <em>realmente</em> está.</h1>
+  <p class="sub">Perguntas objetivas, em poucos minutos, para um retrato direto da sua saúde financeira hoje. Sem enrolação, sem termo técnico e sem venda de produto de investimento.</p>
+
+  <!-- INTRO -->
+  <section id="screen-intro" class="card intro-card">
+    <div class="q-eyebrow">Como funciona</div>
+    <p style="margin:0; font-size:14.5px; line-height:1.6; color:var(--ink); text-align:justify;">Você responde algumas perguntas objetivas sobre orçamento, dívida, reserva e hábito de investir. No fim, calculamos sua nota de saúde financeira, mostramos onde está o maior travamento e o que fazer sobre isso nos próximos 30 dias.</p>
+    <ul class="intro-list">
+      <li><span class="n">01</span> Leva cerca de 2 minutos</li>
+      <li><span class="n">02</span> Nota de 0 a 10 com metodologia aberta</li>
+      <li><span class="n">03</span> Prioridades práticas, sem jargão</li>
+      <li><span class="n">04</span> Nada de recomendação de onde investir: isso não é consultoria de investimentos</li>
+    </ul>
+    <button class="cta-btn" onclick="goTo('form')">Começar diagnóstico →</button>
+    <div class="fine">gratuito nesta versão · leva 2 minutos</div>
+  </section>
+
+  <!-- FORM -->
+  <section id="screen-form" class="card form-card" style="display:none;">
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">1 / 9</div>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:20px;">Todos os campos são obrigatórios. Sem valor a informar, digite 0.</div>
+
+    <form id="dfiForm">
+      <!-- Step 1: nome/idade/whatsapp (portão mínimo) -->
+      <div class="step active" data-step="0">
+        <div class="q-eyebrow">Antes de começar</div>
+        <div class="q-title">Como podemos chamar você no diagnóstico?</div>
+        <div class="field">
+          <label class="small">Nome ou apelido</label>
+          <input type="text" id="q_nome" placeholder="Ex: Igor">
+        </div>
+        <div class="field">
+          <label class="small">Idade</label>
+          <input type="number" id="q_idade" placeholder="Ex: 34" min="16" max="100">
+        </div>
+        <div class="field">
+          <label class="small">WhatsApp (com DDD)</label>
+          <input type="tel" id="q_whatsapp" placeholder="Ex: 47999998888">
+          <div style="font-size:11px; color:var(--muted); margin-top:6px; font-family:'IBM Plex Mono',monospace;">Ao continuar, você concorda em receber contato pelo WhatsApp informado.</div>
+        </div>
+      </div>
+
+      <!-- Step 2: perfil -->
+      <div class="step" data-step="1">
+        <div class="q-eyebrow">Um pouco mais sobre você</div>
+        <div class="q-title">Só mais alguns dados rápidos antes de começar</div>
+        <div class="field">
+          <label class="small">Melhor e-mail</label>
+          <input type="email" id="q_email" placeholder="Ex: voce@email.com">
+        </div>
+        <div class="field">
+          <label class="small">Sexo</label>
+          <div class="opt-grid" data-group="sexo">
+            <div class="opt" data-value="masculino">Masculino <span class="tick">○</span></div>
+            <div class="opt" data-value="feminino">Feminino <span class="tick">○</span></div>
+            <div class="opt" data-value="nao_informar">Prefiro não informar <span class="tick">○</span></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="small">Estado civil</label>
+          <div class="opt-grid" data-group="estadoCivil">
+            <div class="opt" data-value="solteiro">Solteiro(a) <span class="tick">○</span></div>
+            <div class="opt" data-value="casado">Casado(a) ou união estável <span class="tick">○</span></div>
+            <div class="opt" data-value="divorciado">Divorciado(a) <span class="tick">○</span></div>
+            <div class="opt" data-value="viuvo">Viúvo(a) <span class="tick">○</span></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="small">Quantos filhos você tem</label>
+          <input type="number" id="q_filhos" placeholder="Ex: 0" min="0">
+        </div>
+      </div>
+
+      <!-- Step 3: renda, gasto e reserva -->
+      <div class="step" data-step="2">
+        <div class="q-eyebrow">Orçamento</div>
+        <div class="q-title">Qual sua renda, seu gasto mensal e sua reserva de emergência hoje?</div>
+        <div class="field">
+          <label class="small">Renda líquida mensal</label>
+          <div class="prefix-input"><span>R$</span><input type="number" id="q_renda" placeholder="5000" min="0"></div>
+        </div>
+        <div class="field">
+          <label class="small">Gasto total mensal (aproximado)</label>
+          <div class="prefix-input"><span>R$</span><input type="number" id="q_gasto" placeholder="4200" min="0"></div>
+        </div>
+        <div class="field">
+          <label class="small">Reserva de emergência atual (total guardado)</label>
+          <div class="prefix-input"><span>R$</span><input type="number" id="q_reservaAtual" placeholder="Ex: 0" min="0"></div>
+        </div>
+      </div>
+
+      <!-- Step 3: liberdade financeira -->
+      <div class="step" data-step="3">
+        <div class="q-eyebrow">Objetivo</div>
+        <div class="q-title">Com que idade você pretende ter liberdade financeira, e com qual renda mensal?</div>
+        <div class="field">
+          <label class="small">Idade desejada para a liberdade financeira</label>
+          <input type="number" id="q_idadeLiberdade" placeholder="Ex: 55" min="18" max="100">
+        </div>
+        <div class="field">
+          <label class="small">Renda mensal desejada nessa fase</label>
+          <div class="prefix-input"><span>R$</span><input type="number" id="q_rendaDesejada" placeholder="8000" min="0"></div>
+        </div>
+        <div class="field">
+          <label class="small">Quanto você já tem investido hoje (fora a reserva de emergência)</label>
+          <div class="prefix-input"><span>R$</span><input type="number" id="q_investidoAtual" placeholder="Ex: 0" min="0"></div>
+        </div>
+        <div class="field">
+          <label class="small">Taxa real de retorno assumida na projeção (acima da inflação)</label>
+          <div class="suffix-input"><input type="number" id="q_taxaReal" value="8" min="0" max="30" step="0.5"><span>% a.a.</span></div>
+        </div>
+      </div>
+
+      <!-- Step 4: termina o mês -->
+      <div class="step" data-step="4">
+        <div class="q-eyebrow">Orçamento</div>
+        <div class="q-title">No fim do mês, você normalmente termina...</div>
+        <div class="opt-grid" data-group="terminaMes">
+          <div class="opt" data-value="azul">No azul, sobra dinheiro <span class="tick">○</span></div>
+          <div class="opt" data-value="zero">No zero, gasto quase tudo <span class="tick">○</span></div>
+          <div class="opt" data-value="usa_reserva">Uso minha reserva de emergência <span class="tick">○</span></div>
+          <div class="opt" data-value="vermelho">No vermelho, uso crédito ou me endivido <span class="tick">○</span></div>
+        </div>
+      </div>
+
+      <!-- Step 5: controle -->
+      <div class="step" data-step="5">
+        <div class="q-eyebrow">Orçamento</div>
+        <div class="q-title">Você acompanha seus gastos de forma organizada?</div>
+        <div class="opt-grid" data-group="controle">
+          <div class="opt" data-value="sim">Sim, uso planilha ou app com constância <span class="tick">○</span></div>
+          <div class="opt" data-value="tentei">Já tentei, mas não mantive <span class="tick">○</span></div>
+          <div class="opt" data-value="nao">Não, não acompanho <span class="tick">○</span></div>
+        </div>
+      </div>
+
+      <!-- Step 6: dividas -->
+      <div class="step" data-step="6">
+        <div class="q-eyebrow">Endividamento</div>
+        <div class="q-title">Você tem dívidas em aberto hoje?</div>
+        <div class="opt-grid" data-group="dividas">
+          <div class="opt" data-value="nenhuma">Não tenho dívidas <span class="tick">○</span></div>
+          <div class="opt" data-value="ate5">Até R$ 5 mil <span class="tick">○</span></div>
+          <div class="opt" data-value="5a20">Entre R$ 5 mil e R$ 20 mil <span class="tick">○</span></div>
+          <div class="opt" data-value="acima20">Acima de R$ 20 mil <span class="tick">○</span></div>
+        </div>
+      </div>
+
+      <!-- Step 7: investimento mensal -->
+      <div class="step" data-step="7">
+        <div class="q-eyebrow">Hábito de investir</div>
+        <div class="q-title">Quanto você consegue guardar ou investir por mês, hoje?</div>
+        <div class="field">
+          <label class="small">Valor investido/guardado por mês</label>
+          <div class="prefix-input"><span>R$</span><input type="number" id="q_investe" placeholder="Ex: 0" min="0"></div>
+        </div>
+      </div>
+
+      <!-- Step 8: objetivo -->
+      <div class="step" data-step="8">
+        <div class="q-eyebrow">Clareza de objetivo</div>
+        <div class="q-title">Qual seu objetivo financeiro principal agora?</div>
+        <div class="opt-grid" data-group="objetivo">
+          <div class="opt" data-value="organizar">Organizar as finanças primeiro <span class="tick">○</span></div>
+          <div class="opt" data-value="aposentadoria">Aposentadoria <span class="tick">○</span></div>
+          <div class="opt" data-value="independencia">Independência financeira <span class="tick">○</span></div>
+          <div class="opt" data-value="renda_passiva">Renda passiva <span class="tick">○</span></div>
+          <div class="opt" data-value="proteger">Proteger patrimônio <span class="tick">○</span></div>
+        </div>
+        <label class="consent-row">
+          <input type="checkbox" id="q_consent">
+          <span>Autorizo o contato pelo WhatsApp e e-mail informados neste diagnóstico.</span>
+        </label>
+      </div>
+    </form>
+
+    <div class="nav-row">
+      <button class="cta-btn ghost back" id="btnBack" onclick="prevStep()">Voltar</button>
+      <button class="cta-btn next" id="btnNext" onclick="nextStep()" disabled>Continuar</button>
+    </div>
+  </section>
+
+  <!-- REPORT -->
+  <section id="screen-report" style="display:none;">
+    <div class="ticket">
+      <div class="ticket-inner" id="reportBody"></div>
+      <div class="perf"></div>
+    </div>
+
+    <div class="card pitch-card no-print">
+      <div class="q-eyebrow">Próximo passo (sem pressão)</div>
+      <h3>Análise dos seus últimos 3 meses</h3>
+      <p style="text-align:justify;">Esse diagnóstico express é uma fotografia geral, baseada em estimativa. O próximo passo é a Análise dos seus últimos 3 meses fechados: com extrato, gasto real e dívida real, ela confirma ou corrige o que apareceu aqui. Depois dela, o passo seguinte é o 💰 Orçamento Financeiro, para manter esse controle no dia a dia. Por enquanto, o que está disponível é a Análise de 3 Meses.</p>
+      <a class="cta-btn" id="pitchCtaBtn" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
+    </div>
+
+    <div class="no-print" style="display:flex; gap:10px; margin-top:16px;">
+      <button class="cta-btn ghost" style="margin-top:0;" onclick="window.print()">Baixar PDF</button>
+      <button class="cta-btn ghost" style="margin-top:0;" onclick="restart()">Refazer</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// Cole aqui a URL do seu Web App do Google Apps Script (veja instruções de configuração).
+// Enquanto estiver vazio, a captura pra planilha fica desativada e o app funciona normalmente.
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzVl4RxZlCziVL4uYrgbNh8GpBd5seadaBS6ijKa9RnkHfIKEYwuJqYEFnkHFwdO0mZxQ/exec';
+
+function sendLeadToSheet(payload){
+  if(!SHEET_WEBHOOK_URL) return;
+  try{
+    const params = new URLSearchParams({ timestamp: new Date().toISOString(), ...payload });
+    fetch(SHEET_WEBHOOK_URL + '?' + params.toString(), { method:'GET', mode:'no-cors' }).catch(()=>{});
+  }catch(e){}
+}
+
+let currentStep = 0;
+const totalSteps = 9;
+const answers = {};
+
+function goTo(screen){
+  document.getElementById('screen-intro').style.display = screen==='intro' ? 'block' : 'none';
+  document.getElementById('screen-form').style.display = screen==='form' ? 'block' : 'none';
+  document.getElementById('screen-report').style.display = screen==='report' ? 'block' : 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// option selection
+document.querySelectorAll('.opt-grid').forEach(grid=>{
+  grid.addEventListener('click', (e)=>{
+    const opt = e.target.closest('.opt');
+    if(!opt) return;
+    const group = grid.dataset.group;
+    grid.querySelectorAll('.opt').forEach(o=>{o.classList.remove('selected'); o.querySelector('.tick').textContent='○';});
+    opt.classList.add('selected');
+    opt.querySelector('.tick').textContent='●';
+    answers[group] = opt.dataset.value;
+    validateStep();
+  });
+});
+
+['q_nome','q_idade','q_whatsapp','q_email','q_filhos','q_renda','q_gasto','q_reservaAtual','q_idadeLiberdade','q_rendaDesejada','q_investidoAtual','q_taxaReal','q_investe'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', validateStep);
+});
+document.getElementById('q_consent').addEventListener('change', validateStep);
+
+function validateStep(){
+  const step = currentStep;
+  let valid = false;
+  if(step===0){
+    valid = document.getElementById('q_nome').value.trim().length>0
+      && document.getElementById('q_idade').value!==''
+      && document.getElementById('q_whatsapp').value.trim().length>=8;
+  } else if(step===1){
+    valid = document.getElementById('q_email').value.trim().length>3
+      && document.getElementById('q_filhos').value!==''
+      && !!answers.sexo && !!answers.estadoCivil;
+  } else if(step===2){
+    valid = document.getElementById('q_renda').value!=='' && document.getElementById('q_gasto').value!=='' && document.getElementById('q_reservaAtual').value!=='';
+  } else if(step===3){
+    valid = document.getElementById('q_idadeLiberdade').value!=='' && document.getElementById('q_rendaDesejada').value!=='' && document.getElementById('q_investidoAtual').value!=='' && document.getElementById('q_taxaReal').value!=='';
+  } else if(step===4){
+    valid = !!answers.terminaMes;
+  } else if(step===5){
+    valid = !!answers.controle;
+  } else if(step===6){
+    valid = !!answers.dividas;
+  } else if(step===7){
+    valid = document.getElementById('q_investe').value!=='';
+  } else if(step===8){
+    valid = !!answers.objetivo && document.getElementById('q_consent').checked;
+  }
+  document.getElementById('btnNext').disabled = !valid;
+}
+
+function renderStep(){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.step[data-step="'+currentStep+'"]').classList.add('active');
+  document.getElementById('progressFill').style.width = (((currentStep)/(totalSteps-1))*100)+'%';
+  document.getElementById('progressLabel').textContent = (currentStep+1)+' / '+totalSteps;
+  document.getElementById('btnBack').style.visibility = 'visible';
+  document.getElementById('btnNext').textContent = currentStep===totalSteps-1 ? 'Diagnóstico' : 'Continuar';
+  validateStep();
+}
+
+function nextStep(){
+  if(currentStep < totalSteps-1){
+    currentStep++;
+    renderStep();
+  } else {
+    computeAndRender();
+    goTo('report');
+  }
+}
+function prevStep(){
+  if(currentStep>0){
+    currentStep--;
+    renderStep();
+  } else {
+    goTo('intro');
+  }
+}
+
+function restart(){
+  currentStep = 0;
+  Object.keys(answers).forEach(k=>delete answers[k]);
+  document.querySelectorAll('.opt').forEach(o=>{o.classList.remove('selected'); o.querySelector('.tick').textContent='○';});
+  document.querySelectorAll('.field input').forEach(i=>i.value='');
+  document.getElementById('q_taxaReal').value = '8';
+  document.getElementById('q_consent').checked = false;
+  renderStep();
+  goTo('intro');
+}
+
+renderStep();
+
+/* ---------------- SCORING ENGINE ---------------- */
+function computeAndRender(){
+  const nome = document.getElementById('q_nome').value.trim() || 'Você';
+  const idade = document.getElementById('q_idade').value;
+  const whatsapp = document.getElementById('q_whatsapp').value.trim();
+  const email = document.getElementById('q_email').value.trim();
+  const filhos = document.getElementById('q_filhos').value;
+  const consentimento = document.getElementById('q_consent').checked;
+  const renda = parseFloat(document.getElementById('q_renda').value) || 0;
+  const gasto = parseFloat(document.getElementById('q_gasto').value) || 0;
+  const reservaAtual = parseFloat(document.getElementById('q_reservaAtual').value) || 0;
+  const idadeLiberdade = parseFloat(document.getElementById('q_idadeLiberdade').value) || 0;
+  const rendaDesejada = parseFloat(document.getElementById('q_rendaDesejada').value) || 0;
+  const investidoAtual = parseFloat(document.getElementById('q_investidoAtual').value) || 0;
+  const taxaRealInput = parseFloat(document.getElementById('q_taxaReal').value);
+  const taxaReal = (isNaN(taxaRealInput) || taxaRealInput<=0) ? DEFAULT_TAXA_REAL_ANUAL*100 : taxaRealInput;
+  const investeMes = parseFloat(document.getElementById('q_investe').value) || 0;
+
+  // 1. Orçamento (0-2.5) — 2.0 por como termina o mês + 0.5 por acompanhar os gastos
+  const terminaMesMap = { azul:2.0, zero:1.2, usa_reserva:0.4, vermelho:0 };
+  const controleMap = { sim:0.5, tentei:0.25, nao:0 };
+  const orcamento = (terminaMesMap[answers.terminaMes] ?? 0) + (controleMap[answers.controle] ?? 0);
+
+  // 2. Dívidas (0-2)
+  const dividasMap = { nenhuma:2, ate5:1.5, '5a20':0.75, acima20:0 };
+  const dividas = dividasMap[answers.dividas] ?? 0;
+
+  // 3. Reserva de emergência (0-2) — meses de cobertura calculados (reserva atual / gasto mensal), referência: 6 meses
+  const mesesReserva = gasto>0 ? (reservaAtual/gasto) : 0;
+  const reserva = Math.min(mesesReserva/6, 1) * 2;
+
+  // 4. Hábito de investir / taxa de poupança (0-2) — % da renda guardada
+  let taxaPoupanca = renda>0 ? (investeMes/renda)*100 : 0;
+  let investimento;
+  if(taxaPoupanca<=0) investimento=0;
+  else if(taxaPoupanca<5) investimento=0.5;
+  else if(taxaPoupanca<10) investimento=1;
+  else if(taxaPoupanca<20) investimento=1.5;
+  else investimento=2;
+
+  // 5. Clareza de objetivos (0-1.5) — baseado no objetivo financeiro definido
+  let clareza=0;
+  if(answers.objetivo && answers.objetivo!=='organizar') clareza=1.5;
+  else if(answers.objetivo==='organizar') clareza=0.75;
+
+  const total = orcamento + dividas + reserva + investimento + clareza;
+  const totalRounded = Math.round(total*100)/100;
+
+  const categories = [
+    {key:'orcamento', label:'Controle orçamentário', val:orcamento, max:2.5},
+    {key:'dividas', label:'Endividamento', val:dividas, max:2},
+    {key:'reserva', label:'Reserva de emergência', val:reserva, max:2},
+    {key:'investimento', label:'Hábito de poupança', val:investimento, max:2},
+    {key:'clareza', label:'Clareza de objetivo', val:clareza, max:1.5},
+  ];
+
+  // find weakest category (lowest ratio)
+  categories.sort((a,b)=> (a.val/a.max) - (b.val/b.max));
+  const weakest = categories[0];
+  const secondWeakest = categories[1];
+
+  renderReport({nome, idade, whatsapp, email, filhos, consentimento, sexo:answers.sexo, estadoCivil:answers.estadoCivil, totalRounded, categories, weakest, secondWeakest, taxaPoupanca, renda, gasto, orcamento, mesesReserva, idadeLiberdade, rendaDesejada, investeMes, investidoAtual, taxaReal, reservaAtual, terminaMes:answers.terminaMes, controle:answers.controle, dividas:answers.dividas, objetivo:answers.objetivo});
+}
+
+function tagForScore(score){
+  if(score>=7.5) return {cls:'tag-green', text:'Saudável'};
+  if(score>=5) return {cls:'tag-amber', text:'Em ajuste'};
+  return {cls:'tag-red', text:'Atenção'};
+}
+function fillClass(ratio){
+  if(ratio>=0.7) return 'fill-green';
+  if(ratio>=0.4) return 'fill-amber';
+  return 'fill-red';
+}
+
+const diagnosisCopy = {
+  orcamento: {
+    title:'Seu maior travamento hoje é o orçamento',
+    text:(a)=> `Sem um controle claro de entradas e saídas, qualquer outro esforço financeiro fica em segundo plano. É como tentar economizar água numa banheira com o ralo aberto. Antes de pensar em investir mais ou quitar dívidas mais rápido, ${a.nome}, o primeiro passo é enxergar para onde seu dinheiro está indo, todo mês, sem exceção.`
+  },
+  dividas: {
+    title:'Seu maior travamento hoje é a dívida em aberto',
+    text:(a)=> `Enquanto parte da sua renda está comprometida com dívida, o custo do dinheiro trabalha contra você, geralmente a um ritmo mais rápido do que qualquer investimento consegue compensar. Organizar e reduzir esse passivo é o que libera espaço real no seu orçamento.`
+  },
+  reserva: {
+    title:'Seu maior travamento hoje é a reserva de emergência',
+    text:(a)=> `Com ${(Math.round(a.mesesReserva*10)/10)} meses de gastos cobertos, qualquer imprevisto (carro, saúde, uma queda de renda) te empurra de volta para dívida ou para desmontar o pouco que você já construiu. A referência de mercado são 6 meses de cobertura. Isso trava o crescimento antes que ele comece.`
+  },
+  investimento: {
+    title:'Seu maior travamento hoje é a taxa de poupança',
+    text:(a)=> `Você pode até já estar organizado no orçamento, mas se a parcela da renda guardada por mês é pequena, o tempo para atingir seus objetivos se estica bastante. Aqui o ponto não é "onde investir", é quanto sobra pra investir. Isso se resolve olhando a estrutura de gastos, não o produto financeiro.`
+  },
+  clareza: {
+    title:'Seu maior travamento hoje é a falta de clareza no destino',
+    text:(a)=> `Sem saber qual patrimônio ou renda você está buscando, fica difícil saber se está no caminho certo, ou se está guardando o suficiente. Definir esse número muda completamente a forma como você toma decisões financeiras no dia a dia.`
+  }
+};
+
+const answerLabels = {
+  terminaMes:{ azul:'No azul, sobra dinheiro', zero:'No zero, gasto quase tudo', usa_reserva:'Uso minha reserva de emergência', vermelho:'No vermelho, uso crédito/me endivido' },
+  controle:{ sim:'Uso planilha/app com constância', tentei:'Já tentei, mas não mantive', nao:'Não acompanho' },
+  dividas:{ nenhuma:'Não tenho dívidas', ate5:'Até R$ 5 mil', '5a20':'R$ 5 mil a R$ 20 mil', acima20:'Acima de R$ 20 mil' },
+  objetivo:{ organizar:'Organizar as finanças primeiro', aposentadoria:'Aposentadoria', independencia:'Independência financeira', renda_passiva:'Renda passiva', proteger:'Proteger patrimônio' },
+  sexo:{ masculino:'Masculino', feminino:'Feminino', nao_informar:'Prefiro não informar' },
+  estadoCivil:{ solteiro:'Solteiro(a)', casado:'Casado(a) ou união estável', divorciado:'Divorciado(a)', viuvo:'Viúvo(a)' }
+};
+
+const priorityBank = {
+  orcamento:[
+    'Semanas 1 e 2: anote todos os gastos diariamente, sem exceção, para mapear para onde o dinheiro está indo de verdade.',
+    'Semanas 3 e 4: separe esses gastos em 3 grupos (fixos, variáveis/supérfluos e investimento) e calcule o % de cada um sobre sua renda, comparando com a régua 50/30/20 (50% fixos, 30% variáveis, 20% investimento).',
+    'Defina um dia fixo por semana para revisar o orçamento: 10 minutos bastam.'
+  ],
+  dividas:[
+    'Liste todas as dívidas com valor, juros e data, e ataque primeiro a de maior juros.',
+    'Renegocie a dívida mais cara antes de qualquer outro movimento financeiro.',
+    'Corte uma fonte de novo crédito (cartão, parcelamento) até quitar a atual.'
+  ],
+  reserva:[
+    'Defina uma meta de reserva de 3 meses de gastos essenciais como primeiro marco.',
+    'Automatize um valor fixo, por menor que seja, para uma conta separada logo após receber.',
+    'Mantenha essa reserva em algo de fácil acesso: liquidez importa mais que rendimento aqui.'
+  ],
+  investimento:[
+    'Aplique a régua 50/30/20 na sua renda (50% gastos fixos, 30% gastos variáveis/supérfluos, 20% investimento) e veja qual fatia está fora da proporção hoje.',
+    'Revise primeiro os gastos variáveis e supérfluos (lazer, apps, streaming, delivery) antes de mexer nos fixos. É aí que normalmente existe espaço pra cortar sem dor.',
+    'Trate o valor guardado como uma "conta a pagar" fixa, debitada assim que a renda cai, não como sobra do fim do mês.'
+  ],
+  clareza:[
+    'Confira se sua meta de idade e renda desejada é compatível com o que você guarda hoje por mês.',
+    'Escolha um único objetivo financeiro principal para os próximos 12 meses.',
+    'Escreva esse objetivo em um lugar visível: ele muda decisões de consumo no dia a dia.'
+  ]
+};
+
+function formatBRL(v){
+  return v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function formatNum(v){
+  return v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function formatYears(v){
+  return Math.round(v).toLocaleString('pt-BR');
+}
+
+const DEFAULT_TAXA_REAL_ANUAL = 0.08; // valor padrão sugerido (a.a.), editável no formulário, hipótese educacional, não garantia
+
+function mesesParaAtingirMeta(pv, pmt, fv, taxaMensal){
+  if(fv<=pv) return 0;
+  const denom = pv*taxaMensal + pmt;
+  const numer = fv*taxaMensal + pmt;
+  if(denom<=0 || numer<=0) return null;
+  const n = Math.log(numer/denom) / Math.log(1+taxaMensal);
+  return n;
+}
+
+function renderReport(data){
+  const {nome, idade, whatsapp, email, filhos, consentimento, sexo, estadoCivil, totalRounded, categories, weakest, secondWeakest, taxaPoupanca, renda, gasto, mesesReserva, idadeLiberdade, rendaDesejada, investeMes, investidoAtual, taxaReal, reservaAtual, terminaMes, controle, dividas, objetivo} = data;
+  const tag = tagForScore(totalRounded);
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('pt-BR');
+  const id = 'DFI-' + today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0') + '-' + Math.floor(Math.random()*900+100);
+
+  let html = '';
+  html += `<div class="ticket-head"><div class="id">Nº ${id}<br>${dateStr}</div><div class="brand">Diagnóstico<br>Financeiro Express</div></div>`;
+
+  html += `<div class="gauge-wrap">
+    <div class="gauge-name">${nome}${idade ? ', '+idade+' anos' : ''}</div>
+    <div class="gauge-score">${formatNum(totalRounded)}<span>/10</span></div>
+    <div class="gauge-tag ${tag.cls}">${tag.text}</div>
+  </div>`;
+
+  if(rendaDesejada>0 && idadeLiberdade>0){
+    const taxaMensal = Math.pow(1+taxaReal/100, 1/12) - 1;
+    const patrimonioNecessario = rendaDesejada / taxaMensal;
+    const idadeAtualNum = parseFloat(idade) || 0;
+    const anosDesejados = idadeAtualNum>0 ? Math.max(idadeLiberdade - idadeAtualNum, 0) : null;
+
+    const mesesNecessarios = mesesParaAtingirMeta(investidoAtual, investeMes, patrimonioNecessario, taxaMensal);
+    const anosNecessarios = mesesNecessarios!==null ? mesesNecessarios/12 : null;
+
+    html += `<div class="section-label">Sua meta de liberdade financeira</div>`;
+    html += `<div class="diag-block"><strong>R$ ${formatBRL(patrimonioNecessario)} de patrimônio${anosDesejados!==null ? `, em até ${formatYears(anosDesejados)} anos` : ''}</strong>Aos ${idadeLiberdade} anos, você quer uma renda de R$ ${formatBRL(rendaDesejada)}/mês. Considerando uma taxa real de retorno de ${formatNum(taxaReal)}% a.a. (acima da inflação), viver dessa renda sem consumir o principal exige aproximadamente esse patrimônio.</div>`;
+
+    let ritmoTxt;
+    if(mesesNecessarios===null){
+      ritmoTxt = `Com o capital investido e o aporte mensal informados hoje, não é possível projetar esse acúmulo. É preciso ter algum valor já investido ou começar a investir por mês para que a conta feche.`;
+    } else if(anosNecessarios<=0){
+      ritmoTxt = `Com o que você já tem investido hoje, considerando essa taxa, você já teria o capital necessário.`;
+    } else if(anosDesejados===null){
+      ritmoTxt = `No ritmo atual de aporte, a ${formatNum(taxaReal)}% a.a. real, você chegaria a esse patrimônio em aproximadamente ${formatYears(anosNecessarios)} anos.`;
+    } else {
+      const diff = anosNecessarios - anosDesejados;
+      if(Math.abs(diff)<=0.5){
+        ritmoTxt = `No ritmo atual de aporte, a ${formatNum(taxaReal)}% a.a. real, você chegaria lá em aproximadamente ${formatYears(anosNecessarios)} anos, bem alinhado com os ${formatYears(anosDesejados)} anos que você definiu como meta.`;
+      } else if(diff>0){
+        ritmoTxt = `No ritmo atual de aporte, a ${formatNum(taxaReal)}% a.a. real, você levaria aproximadamente ${formatYears(anosNecessarios)} anos para chegar lá, cerca de ${formatYears(diff)} anos a mais do que os ${formatYears(anosDesejados)} anos que você definiu como meta. Para fechar essa conta, o ajuste está em aumentar o aporte mensal, antecipar o capital inicial ou revisar o prazo desejado.`;
+      } else {
+        ritmoTxt = `No ritmo atual de aporte, a ${formatNum(taxaReal)}% a.a. real, você chegaria lá em aproximadamente ${formatYears(anosNecessarios)} anos, cerca de ${formatYears(Math.abs(diff))} anos antes dos ${formatYears(anosDesejados)} anos que você definiu como meta.`;
+      }
+    }
+    html += `<div class="diag-block" style="margin-top:10px;"><strong>Tempo necessário × tempo desejado</strong>${ritmoTxt}</div>`;
+  }
+
+  html += `<div class="section-label">Leitura por categoria</div>`;
+  const order = ['orcamento','dividas','reserva','investimento','clareza'];
+  order.forEach(key=>{
+    const c = categories.find(x=>x.key===key);
+    const ratio = c.val/c.max;
+    const subLabel = key==='reserva' ? ` <span style="color:var(--muted);">(${formatNum(mesesReserva)} meses de cobertura)</span>` : '';
+    html += `<div class="reading">
+      <div class="r-name">${c.label}${subLabel}</div>
+      <div class="r-val">${formatNum(c.val)} / ${formatNum(c.max)}</div>
+      <div class="r-bar"><div class="r-fill ${fillClass(ratio)}" style="width:${Math.max(ratio*100,4)}%"></div></div>
+    </div>`;
+  });
+
+  const diag = diagnosisCopy[weakest.key];
+  html += `<div class="section-label">Onde está o maior erro agora</div>`;
+  html += `<div class="diag-block"><strong>${diag.title}</strong>${diag.text(data)}</div>`;
+
+  html += `<div class="section-label">Prioridades dos próximos 30 dias</div>`;
+  const picks = [];
+  priorityBank[weakest.key].slice(0,2).forEach(p=>picks.push(p));
+  picks.push(priorityBank[secondWeakest.key][0]);
+  html += `<ul class="priorities">` + picks.map((p,i)=>`<li><span class="pnum">${i+1}</span><span>${p}</span></li>`).join('') + `</ul>`;
+
+  const poupancaTxt = renda>0 ? `${formatNum(taxaPoupanca)}% da renda guardada por mês` : 'renda não informada';
+  html += `<div class="section-label">Nota de método</div>`;
+  html += `<div class="diag-block" style="font-size:13px;"><strong style="font-size:14px;">Como chegamos nessa nota</strong>Orçamento pelo padrão de fechamento do mês (2,0 pts) somado ao acompanhamento ativo dos gastos (0,5 pt), dívida pela faixa comprometida, reserva pelos meses de cobertura calculados (referência: 6 meses), poupança pela % da renda guardada (hoje: ${poupancaTxt}) e clareza pela definição de um objetivo financeiro principal. Nenhum critério considera produtos ou alocação de investimento.</div>`;
+
+  html += `<div class="disclaimer">Este diagnóstico é educacional e organizacional. A projeção de patrimônio e prazo usa uma taxa real de retorno hipotética de ${formatNum(taxaReal)}% a.a., uma suposição para fins de cálculo, não uma promessa de rentabilidade. Nada aqui constitui recomendação de investimento, análise de valores mobiliários ou consultoria financeira registrada. Para decisões de alocação de patrimônio, procure um profissional certificado.</div>`;
+
+  html += `<div class="section-label">Respostas informadas</div>`;
+  const infoRows = [
+    ['Nome', nome],
+    ['WhatsApp', whatsapp || '-'],
+    ['E-mail', email || '-'],
+    ['Sexo', answerLabels.sexo[sexo] || '-'],
+    ['Estado civil', answerLabels.estadoCivil[estadoCivil] || '-'],
+    ['Filhos', filhos!=='' ? filhos : '-'],
+    ['Idade', idade || '-'],
+    ['Renda mensal', `R$ ${formatBRL(renda)}`],
+    ['Gasto mensal', `R$ ${formatBRL(gasto)}`],
+    ['Termina o mês', answerLabels.terminaMes[terminaMes] || '-'],
+    ['Controle de gastos', answerLabels.controle[controle] || '-'],
+    ['Dívidas', answerLabels.dividas[dividas] || '-'],
+    ['Reserva de emergência', `R$ ${formatBRL(reservaAtual)} (${formatNum(mesesReserva)} meses)`],
+    ['Guarda/investe por mês', `R$ ${formatBRL(investeMes)}`],
+    ['Já investido hoje', `R$ ${formatBRL(investidoAtual)}`],
+    ['Idade p/ liberdade financeira', idadeLiberdade || '-'],
+    ['Renda desejada nessa fase', `R$ ${formatBRL(rendaDesejada)}`],
+    ['Taxa real usada na projeção', `${formatNum(taxaReal)}% a.a.`],
+    ['Objetivo principal', answerLabels.objetivo[objetivo] || '-'],
+  ];
+  html += infoRows.map(([label,val])=>`<div class="info-row"><span class="i-label">${label}</span><span class="i-val">${val}</span></div>`).join('');
+
+  document.getElementById('reportBody').innerHTML = html;
+
+  const waNumber = '5547996055443';
+  const waMsg = `Olá! Fiz o Diagnóstico Financeiro Express (nota ${formatNum(totalRounded)}/10, maior ponto de atenção: ${diag.title.replace('Seu maior travamento hoje é ', '')}) e quero avançar para a Análise dos Últimos 3 Meses.`;
+  document.getElementById('pitchCtaBtn').href = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`;
+
+  sendLeadToSheet({
+    nome, whatsapp, email, idade,
+    sexo: answerLabels.sexo[sexo] || '',
+    estadoCivil: answerLabels.estadoCivil[estadoCivil] || '',
+    filhos,
+    consentimento: consentimento ? 'Sim' : 'Não',
+    nota: formatNum(totalRounded),
+    maiorPonto: diag.title.replace('Seu maior travamento hoje é ', ''),
+    renda: formatBRL(renda), gasto: formatBRL(gasto),
+    terminaMes: answerLabels.terminaMes[terminaMes] || '',
+    controle: answerLabels.controle[controle] || '',
+    dividas: answerLabels.dividas[dividas] || '',
+    reservaAtual: formatBRL(reservaAtual), mesesReserva: formatNum(mesesReserva),
+    investeMes: formatBRL(investeMes), investidoAtual: formatBRL(investidoAtual),
+    idadeLiberdade, rendaDesejada: formatBRL(rendaDesejada), taxaReal: formatNum(taxaReal),
+    objetivo: answerLabels.objetivo[objetivo] || ''
+  });
+}
+</script>
+</body>
+</html>
