@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vida Robusta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#1F4D3A;
+    --verde-escuro:#163B2C;
+    --marrom:#5C4632;
+    --areia:#D8C8B2;
+    --off:#F8F7F2;
+    --dourado:#B08D57;
+    --dourado-claro:#CBA96B;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--off);
+    color:var(--marrom);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HEADER (fundo claro, logo oficial) ---------- */
+  .header{
+    background:var(--off);
+    padding:56px 24px 40px;
+    text-align:center;
+  }
+  .logo-completo{max-width:340px; width:80%; height:auto; margin:0 auto 18px; display:block;}
+  .tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(16px,3vw,19px);
+    color:var(--verde);
+    margin:0;
+  }
+
+  /* ---------- PILARES (fundo escuro, medalhões dourados) ---------- */
+  .pilares{
+    background:radial-gradient(120% 100% at 50% 0%, var(--verde) 0%, var(--verde-escuro) 100%);
+    padding:44px 20px 40px;
+  }
+  .pilares-label{
+    text-align:center; font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
+    letter-spacing:0.2em; text-transform:uppercase; color:var(--dourado-claro); margin:0 0 28px;
+  }
+  .pilar-grid{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; max-width:640px; margin:0 auto;
+  }
+  .pilar{width:110px; display:flex; flex-direction:column; align-items:center;}
+  .pilar img{width:100%; height:auto; display:block;}
+  .pilar.placeholder{
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+    aspect-ratio:1/1; padding:8px;
+  }
+  .pilar.placeholder svg{width:34px; height:34px; stroke:var(--dourado-claro); fill:none; stroke-width:1.6; stroke-linecap:round;}
+  .pilar.placeholder span{
+    font-family:'Cormorant Garamond',serif; font-size:15px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--dourado-claro);
+  }
+
+  /* ---------- CONCEITO ---------- */
+  .conceito{max-width:520px; margin:0 auto; padding:52px 24px 44px; text-align:center;}
+  .conceito p{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500;
+    font-size:clamp(19px,3.2vw,23px); line-height:1.5; color:var(--verde); margin:0;
+  }
+  .conceito .divider{width:36px; height:1px; background:var(--dourado); margin:0 auto 20px;}
+
+  /* ---------- FERRAMENTAS ---------- */
+  .ferramentas{max-width:620px; margin:0 auto; padding:8px 24px 64px;}
+  .section-label{
+    font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--marrom); margin:0 0 16px; display:flex; align-items:center; gap:10px;
+  }
+  .section-label::after{content:""; flex:1; height:1px; background:rgba(92,70,50,0.25);}
+
+  .tool-list{display:flex; flex-direction:column; gap:12px;}
+  .tool{
+    display:block; text-decoration:none; color:inherit;
+    background:#fff; border:1px solid rgba(92,70,50,0.18); border-radius:3px;
+    padding:20px 22px; transition:border-color .15s ease, transform .15s ease;
+  }
+  .tool:not(.soon):hover{border-color:var(--verde); transform:translateX(2px);}
+  .tool-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:6px;}
+  .tool-name{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; color:var(--verde);}
+  .tool-tag{
+    font-family:'Inter',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    padding:4px 10px; border-radius:20px; white-space:nowrap; margin-top:3px;
+  }
+  .tag-live{background:rgba(31,77,58,0.1); color:var(--verde);}
+  .tag-soon{background:rgba(176,141,87,0.16); color:var(--dourado);}
+  .tool-desc{font-size:14px; color:var(--marrom); line-height:1.5; margin:0;}
+  .tool.soon{cursor:default;}
+  .tool.soon:hover{border-color:rgba(92,70,50,0.18);}
+
+  footer{
+    text-align:center; padding:28px 24px 40px;
+    font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.08em; color:var(--marrom); opacity:0.7;
+  }
+
+  @media (max-width:420px){
+    .pilar{width:88px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img class="logo-completo" src="assets/logo-vida-robusta-completo.png" alt="Vida Robusta">
+  <p class="tagline">Raízes fortes. Frutos duradouros.</p>
+</div>
+
+<div class="pilares">
+  <p class="pilares-label">Os cinco pilares</p>
+  <div class="pilar-grid">
+    <div class="pilar"><img src="assets/destaque-patrimonio.png" alt="Patrimônio"></div>
+    <div class="pilar"><img src="assets/destaque-mentalidade.png" alt="Mentalidade"></div>
+    <div class="pilar"><img src="assets/destaque-familia.png" alt="Família"></div>
+    <div class="pilar"><img src="assets/destaque-saude.png" alt="Saúde"></div>
+    <!-- Placeholder temporário: trocar por assets/destaque-fe.png quando o arquivo oficial chegar -->
+    <div class="pilar placeholder">
+      <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M7 8h10"/></svg>
+      <span>Fé</span>
+    </div>
+  </div>
+</div>
+
+<div class="conceito">
+  <div class="divider"></div>
+  <p>Uma árvore não cresce olhando para os frutos.<br>Ela cresce fortalecendo as raízes.</p>
+</div>
+
+<div class="ferramentas">
+  <div class="section-label">Ferramentas</div>
+  <div class="tool-list">
+    <a class="tool" href="/dfi-express/">
+      <div class="tool-top">
+        <span class="tool-name">Diagnóstico Financeiro Express</span>
+        <span class="tool-tag tag-live">Disponível</span>
+      </div>
+      <p class="tool-desc">Perguntas objetivas, em poucos minutos, pra um retrato direto da sua saúde financeira hoje.</p>
+    </a>
+
+    <div class="tool soon">
+      <div class="tool-top">
+        <span class="tool-name">Orçamento Financeiro</span>
+        <span class="tool-tag tag-soon">Em breve</span>
+      </div>
+      <p class="tool-desc">Acompanhe seus gastos sem precisar montar ou manter planilha nenhuma.</p>
+    </div>
+
+    <div class="tool soon">
+      <div class="tool-top">
+        <span class="tool-name">Análise Financeira</span>
+        <span class="tool-tag tag-soon">Em breve</span>
+      </div>
+      <p class="tool-desc">Cruze seus últimos meses fechados com seus objetivos e veja onde ajustar.</p>
+    </div>
+  </div>
+</div>
+
+<footer>VIDAROBUSTA.COM.BR</footer>
+
+</body>
+</html>
