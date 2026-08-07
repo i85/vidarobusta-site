@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vida Robusta</title>
+<title>Vida Robusta — Fortalecendo raízes</title>
+<meta name="description" content="Conversas e ferramentas para fortalecer patrimônio, mentalidade, família, saúde e fé.">
 <link rel="icon" type="image/png" href="assets/emblema-vida-robusta.png">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vida Robusta">
-<meta property="og:title" content="Vida Robusta — Raízes fortes. Frutos duradouros.">
-<meta property="og:description" content="Ferramentas gratuitas pra você organizar sua vida financeira, sem curso e sem planilha complicada.">
+<meta property="og:title" content="Vida Robusta — Fortalecendo raízes">
+<meta property="og:description" content="Conversas e ferramentas para construir uma vida verdadeiramente robusta.">
 <meta property="og:image" content="https://vidarobusta.com.br/assets/logo-vida-robusta-completo.png">
 <meta property="og:url" content="https://vidarobusta.com.br/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vida Robusta — Raízes fortes. Frutos duradouros.">
-<meta name="twitter:description" content="Ferramentas gratuitas pra você organizar sua vida financeira, sem curso e sem planilha complicada.">
+<meta name="twitter:title" content="Vida Robusta — Fortalecendo raízes">
+<meta name="twitter:description" content="Conversas e ferramentas para construir uma vida verdadeiramente robusta.">
 <meta name="twitter:image" content="https://vidarobusta.com.br/assets/logo-vida-robusta-completo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,13 +25,18 @@
   :root{
     --verde:#1F4D3A;
     --verde-escuro:#163B2C;
+    --verde-profundo:#0F2E22;
     --marrom:#5C4632;
     --areia:#D8C8B2;
     --off:#F8F7F2;
     --dourado:#B08D57;
     --dourado-claro:#CBA96B;
+    --branco:#FFFFFF;
+    --linha:rgba(92,70,50,.17);
+    --sombra:0 18px 50px rgba(22,59,44,.10);
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   html,body{margin:0;padding:0;}
   body{
     background:var(--off);
@@ -38,210 +44,344 @@
     font-family:'Inter',sans-serif;
     -webkit-font-smoothing:antialiased;
   }
+  img{max-width:100%;}
+  a{color:inherit;}
+  .container{width:min(1080px,calc(100% - 40px));margin:0 auto;}
 
-  /* ---------- HEADER (fundo claro, logo oficial) ---------- */
-  .header{
-    background:var(--off);
-    padding:56px 24px 40px;
-    text-align:center;
+  /* Navegação */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:rgba(248,247,242,.93);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--linha);
   }
-  .logo-completo{max-width:340px; width:80%; height:auto; margin:0 auto 18px; display:block;}
-  .tagline{
+  .topbar-inner{
+    min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:28px;
+  }
+  .brand-mini{display:flex;align-items:center;text-decoration:none;}
+  .brand-mini img{width:168px;height:auto;display:block;}
+  .nav{display:flex;align-items:center;gap:22px;font-size:13px;}
+  .nav a{text-decoration:none;color:var(--verde-escuro);}
+  .nav a:hover{color:var(--dourado);}
+
+  /* Abertura */
+  .hero{padding:78px 0 82px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;}
+  .hero-copy{max-width:650px;}
+  .eyebrow{
+    margin:0 0 16px; font-size:11px; font-weight:600; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dourado);
+  }
+  .hero h1{
     font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-weight:500;
-    font-size:clamp(16px,3vw,19px);
-    color:var(--verde);
-    margin:0;
+    color:var(--verde-escuro); font-size:clamp(46px,7vw,78px); line-height:.98;
+    font-weight:600; margin:0 0 24px; letter-spacing:-.025em;
   }
+  .hero-lead{font-size:18px;line-height:1.75;margin:0 0 30px;max-width:650px;}
+  .hero-tagline{
+    font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic;
+    color:var(--verde); margin:0 0 30px;
+  }
+  .actions{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;text-decoration:none;
+    min-height:48px;padding:0 20px;border-radius:3px;font-size:13px;font-weight:600;
+    transition:.18s ease;
+  }
+  .btn-primary{background:var(--verde-escuro);color:white;border:1px solid var(--verde-escuro);}
+  .btn-primary:hover{background:var(--verde-profundo);transform:translateY(-1px);}
+  .btn-secondary{border:1px solid rgba(31,77,58,.35);color:var(--verde-escuro);background:transparent;}
+  .btn-secondary:hover{border-color:var(--verde);background:#fff;}
+  .hero-visual{
+    min-height:470px; border-radius:8px; overflow:hidden; box-shadow:var(--sombra);
+    position:relative; background:var(--verde-escuro);
+  }
+  .hero-visual img{width:100%;height:100%;min-height:470px;object-fit:cover;display:block;}
+  .hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,28,20,.38));}
 
-  /* ---------- PILARES (fundo claro, cards com foto + selo) ---------- */
-  .pilares{
-    max-width:640px; margin:0 auto; padding:28px 24px 6px;
-  }
-  .pilares-label{
-    font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
-    letter-spacing:0.16em; text-transform:uppercase; color:var(--marrom); margin:0 0 16px;
-  }
-  .pilar-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
-  .pilar-card{
-    border-radius:4px; overflow:hidden; background:#fff; border:1px solid rgba(92,70,50,0.15);
-  }
-  .pilar-card .foto{
-    height:110px; display:flex; align-items:center; justify-content:center;
-    font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--dourado-claro); opacity:0.7;
-  }
-  .pilar-card .conteudo{padding:14px 16px;}
-  .pilar-card .conteudo img,
-  .pilar-card .conteudo svg{width:40px; height:40px; display:block; margin-bottom:8px;}
-  .pilar-card .conteudo svg{stroke:var(--dourado); fill:none; stroke-width:1.6; stroke-linecap:round;}
-  .pilar-card .nome{
-    font-family:'Cormorant Garamond',serif; font-weight:600; font-size:16px; color:var(--verde); margin-bottom:5px;
-  }
-  .pilar-card .desc{font-size:12px; color:var(--marrom); line-height:1.5;}
-  .pilar-card.largo{display:flex; margin-bottom:16px;}
-  .pilar-card.largo .foto{width:130px; flex:0 0 130px; height:auto; text-align:center;}
-  .pilar-card.largo .conteudo{padding:16px 18px;}
-
-  /* ---------- CONCEITO ---------- */
-  .conceito{max-width:520px; margin:0 auto; padding:34px 24px 44px; text-align:center;}
-  .conceito p{
-    font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500;
-    font-size:clamp(19px,3.2vw,23px); line-height:1.5; color:var(--verde); margin:0;
-  }
-  .conceito .divider{width:36px; height:1px; background:var(--dourado); margin:0 auto 20px;}
-
-  /* ---------- FERRAMENTAS ---------- */
-  .ferramentas{max-width:620px; margin:0 auto; padding:8px 24px 64px;}
+  /* Seções */
+  section{padding:78px 0;}
   .section-label{
-    font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase;
-    color:var(--marrom); margin:0 0 16px; display:flex; align-items:center; gap:10px;
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--dourado);margin:0 0 14px;
   }
-  .section-label::after{content:""; flex:1; height:1px; background:rgba(92,70,50,0.25);}
+  .section-title{
+    font-family:'Cormorant Garamond',serif;color:var(--verde-escuro);
+    font-size:clamp(34px,5vw,54px);line-height:1.04;font-weight:600;margin:0 0 20px;
+  }
+  .section-intro{font-size:17px;line-height:1.8;max-width:760px;margin:0;}
 
-  .tool-list{display:flex; flex-direction:column; gap:12px;}
-  .tool{
-    display:block; text-decoration:none; color:inherit;
-    background:#fff; border:1px solid rgba(92,70,50,0.18); border-radius:3px;
-    padding:20px 22px; transition:border-color .15s ease, transform .15s ease;
+  /* Por que existimos */
+  .about{background:#fff;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);}
+  .about-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px;align-items:start;}
+  .about-copy p{font-size:16px;line-height:1.85;margin:0 0 18px;}
+  .about-quote{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;line-height:1.35;
+    color:var(--verde);border-left:2px solid var(--dourado);padding-left:22px;margin:0;
   }
-  .tool:not(.soon):hover{border-color:var(--verde); transform:translateX(2px);}
-  .tool-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:6px;}
-  .tool-name{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; color:var(--verde);}
-  .tool-tag{
-    font-family:'Inter',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
-    padding:4px 10px; border-radius:20px; white-space:nowrap; margin-top:3px;
+
+  /* Pilares */
+  .pilares-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:34px;}
+  .pilares-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;}
+  .pilar-card{
+    grid-column:span 2; overflow:hidden; background:#fff; border:1px solid var(--linha);
+    border-radius:5px; transition:transform .2s ease,box-shadow .2s ease;
   }
-  .tag-live{background:rgba(31,77,58,0.1); color:var(--verde);}
-  .tag-soon{background:rgba(176,141,87,0.16); color:var(--dourado);}
-  .tool-desc{font-size:14px; color:var(--marrom); line-height:1.5; margin:0;}
+  .pilar-card:nth-child(4){grid-column:2/span 2;}
+  .pilar-card:nth-child(5){grid-column:4/span 2;}
+  .pilar-card:hover{transform:translateY(-3px);box-shadow:var(--sombra);}
+  .pilar-card .foto{height:185px;overflow:hidden;background:var(--verde-escuro);}
+  .pilar-card .foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease;}
+  .pilar-card:hover .foto img{transform:scale(1.035);}
+  .pilar-card .conteudo{padding:20px 20px 22px;}
+  .pilar-card .icone{width:42px;height:42px;object-fit:contain;display:block;margin-bottom:12px;}
+  .pilar-card .nome{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:var(--verde);margin-bottom:7px;}
+  .pilar-card .desc{font-size:13px;line-height:1.65;}
+  .faith-icon{width:42px;height:42px;display:block;margin-bottom:12px;stroke:var(--dourado);fill:none;stroke-width:1.6;stroke-linecap:round;}
+
+  /* Conceito */
+  .concept-band{padding:70px 0;background:var(--verde-profundo);color:#fff;text-align:center;}
+  .concept-band p{
+    font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,46px);line-height:1.25;
+    font-style:italic;font-weight:500;max-width:820px;margin:0 auto;color:#F6F1E7;
+  }
+  .concept-band .divider{width:42px;height:1px;background:var(--dourado);margin:0 auto 22px;}
+
+  /* Conversa */
+  .conversation-grid{display:grid;grid-template-columns:1fr .85fr;gap:56px;align-items:center;}
+  .conversation-card{background:#fff;border:1px solid var(--linha);padding:34px;border-radius:5px;box-shadow:var(--sombra);}
+  .conversation-number{font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--dourado);margin-bottom:14px;}
+  .conversation-card h3{font-family:'Cormorant Garamond',serif;font-size:38px;line-height:1.1;color:var(--verde-escuro);margin:0 0 17px;}
+  .conversation-card p{font-size:15px;line-height:1.75;margin:0 0 24px;}
+  .conversation-image{height:420px;border-radius:6px;overflow:hidden;}
+  .conversation-image img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* Ferramentas */
+  .tools{background:#fff;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);}
+  .tools-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start;}
+  .tool-list{display:flex;flex-direction:column;gap:12px;}
+  .tool{display:block;text-decoration:none;color:inherit;background:var(--off);border:1px solid var(--linha);border-radius:4px;padding:20px 22px;transition:.18s ease;}
+  .tool:not(.soon):hover{border-color:var(--verde);transform:translateX(3px);background:#fff;}
+  .tool-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px;}
+  .tool-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--verde);}
+  .tool-tag{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;white-space:nowrap;margin-top:3px;}
+  .tag-live{background:rgba(31,77,58,.1);color:var(--verde);}
+  .tag-soon{background:rgba(176,141,87,.16);color:var(--dourado);}
+  .tool-desc{font-size:14px;line-height:1.55;margin:0;}
   .tool.soon{cursor:default;}
-  .tool.soon:hover{border-color:rgba(92,70,50,0.18);}
 
-  footer{
-    text-align:center; padding:32px 24px 40px; border-top:1px solid rgba(92,70,50,0.15);
-    max-width:640px; margin:0 auto;
+  /* Rodapé */
+  footer{padding:50px 0 38px;}
+  .footer-phrase{
+    font-family:'Cormorant Garamond',serif;font-size:27px;line-height:1.35;color:var(--verde-escuro);
+    max-width:700px;margin:0 auto 34px;text-align:center;font-style:italic;
   }
-  footer .footer-links{
-    display:flex; justify-content:center; flex-wrap:wrap; gap:8px 18px; margin-bottom:16px;
-    font-family:'Inter',sans-serif; font-size:12px;
-  }
-  footer .footer-links a{color:var(--verde); text-decoration:none;}
-  footer .footer-links a:hover{text-decoration:underline;}
-  footer .footer-brand{
-    font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.08em; color:var(--marrom); opacity:0.7;
-  }
+  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 20px;margin-bottom:18px;font-size:12px;}
+  .footer-links a{color:var(--verde);text-decoration:none;}
+  .footer-links a:hover{text-decoration:underline;}
+  .footer-brand{text-align:center;font-size:11px;letter-spacing:.08em;opacity:.68;}
 
-  @media (max-width:460px){
-    .pilar-row{grid-template-columns:1fr;}
-    .pilar-card.largo{flex-direction:column;}
-    .pilar-card.largo .foto{width:100%; height:90px;}
+  @media (max-width:850px){
+    .hero-grid,.about-grid,.conversation-grid,.tools-grid{grid-template-columns:1fr;}
+    .hero{padding-top:52px;}
+    .hero-visual{min-height:380px;}
+    .hero-visual img{min-height:380px;}
+    .pilares-grid{grid-template-columns:1fr 1fr;}
+    .pilar-card,.pilar-card:nth-child(4),.pilar-card:nth-child(5){grid-column:auto;}
+    .about-grid{gap:30px;}
+    .conversation-image{height:330px;order:-1;}
+  }
+  @media (max-width:680px){
+    .nav{display:none;}
+    .brand-mini img{width:145px;}
+    .hero h1{font-size:52px;}
+    section{padding:60px 0;}
+    .pilares-grid{grid-template-columns:1fr;}
+    .pilares-head{align-items:start;flex-direction:column;}
+    .hero-visual{min-height:310px;}
+    .hero-visual img{min-height:310px;}
+    .conversation-card{padding:26px;}
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <img class="logo-completo" src="assets/logo-vida-robusta-completo.png" alt="Vida Robusta">
-  <p class="tagline">Raízes fortes. Frutos duradouros.</p>
-</div>
-
-<div class="pilares">
-  <p class="pilares-label">Os cinco pilares</p>
-
-  <div class="pilar-row">
-    <div class="pilar-card">
-      <div class="foto" style="background:radial-gradient(circle at 30% 20%,#4A3323,#2B1D14 75%);">[foto: raízes]</div>
-      <div class="conteudo">
-        <img src="assets/destaque-patrimonio.png" alt="Patrimônio">
-        <div class="nome">Patrimônio</div>
-        <div class="desc">Riqueza que sustenta liberdade, não só acumula números.</div>
-      </div>
-    </div>
-    <div class="pilar-card">
-      <div class="foto" style="background:radial-gradient(circle at 60% 40%,#3A4A2E,#1B241A 75%);">[foto: trilha]</div>
-      <div class="conteudo">
-        <img src="assets/destaque-mentalidade.png" alt="Mentalidade">
-        <div class="nome">Mentalidade</div>
-        <div class="desc">Clareza pra decidir bem quando o caminho não é óbvio.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pilar-card largo">
-    <div class="foto" style="background:radial-gradient(circle at 50% 25%,#4A4030,#241F17 75%);">[foto: portal]</div>
-    <div class="conteudo">
-      <!-- Placeholder temporário: trocar por assets/destaque-fe.png quando o arquivo oficial chegar -->
-      <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M7 8h10"/></svg>
-      <div class="nome">Fé</div>
-      <div class="desc">Raízes firmadas em algo maior que sustentam o resto.</div>
-    </div>
-  </div>
-
-  <div class="pilar-row">
-    <div class="pilar-card">
-      <div class="foto" style="background:radial-gradient(circle at 70% 30%,#3D5940,#1C2B1F 75%);">[foto: floresta]</div>
-      <div class="conteudo">
-        <img src="assets/destaque-familia.png" alt="Família">
-        <div class="nome">Família</div>
-        <div class="desc">Relacionamentos que sustentam o que se constrói na vida.</div>
-      </div>
-    </div>
-    <div class="pilar-card">
-      <div class="foto" style="background:radial-gradient(circle at 40% 60%,#6B4A32,#3A2818 80%);">[foto: tronco]</div>
-      <div class="conteudo">
-        <img src="assets/destaque-saude.png" alt="Saúde">
-        <div class="nome">Saúde</div>
-        <div class="desc">Cuidar do corpo pra sustentar tudo que o propósito exige.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="conceito">
-  <div class="divider"></div>
-  <p>Uma árvore não cresce olhando para os frutos.<br>Ela cresce fortalecendo as raízes.</p>
-</div>
-
-<div class="ferramentas">
-  <div class="section-label">Ferramentas</div>
-  <div class="tool-list">
-    <a class="tool" href="dfi-express/">
-      <div class="tool-top">
-        <span class="tool-name">Diagnóstico Financeiro Express</span>
-        <span class="tool-tag tag-live">Disponível</span>
-      </div>
-      <p class="tool-desc">Perguntas objetivas, em poucos minutos, pra um retrato direto da sua saúde financeira hoje.</p>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand-mini" href="#inicio" aria-label="Vida Robusta — início">
+      <img src="assets/logo-vida-robusta-completo.png" alt="Vida Robusta">
     </a>
-
-    <div class="tool soon">
-      <div class="tool-top">
-        <span class="tool-name">Orçamento Financeiro</span>
-        <span class="tool-tag tag-soon">Em breve</span>
-      </div>
-      <p class="tool-desc">Acompanhe seus gastos sem precisar montar ou manter planilha nenhuma.</p>
-    </div>
-
-    <div class="tool soon">
-      <div class="tool-top">
-        <span class="tool-name">Análise Financeira</span>
-        <span class="tool-tag tag-soon">Em breve</span>
-      </div>
-      <p class="tool-desc">Cruze seus últimos meses fechados com seus objetivos e veja onde ajustar.</p>
-    </div>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#pilares">Pilares</a>
+      <a href="#conversa">Conversas</a>
+      <a href="#ferramentas">Ferramentas</a>
+    </nav>
   </div>
-</div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Movimento Vida Robusta</p>
+        <h1>Fortalecendo raízes para construir uma vida verdadeiramente robusta.</h1>
+        <p class="hero-lead">Vivemos em uma época que valoriza velocidade, aparência e resultados imediatos. A Vida Robusta nasceu para lembrar que tudo o que permanece começa pelas raízes.</p>
+        <p class="hero-tagline">Raízes fortes. Frutos duradouros.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#conversa">Ler a primeira conversa</a>
+          <a class="btn btn-secondary" href="#sobre">Conhecer o Movimento</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/foto-floresta.webp" alt="Floresta iluminada pelo sol, símbolo de comunidade e crescimento">
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="container about-grid">
+      <div>
+        <p class="section-label">Por que existimos</p>
+        <h2 class="section-title">Uma vida sólida é construída de dentro para fora.</h2>
+        <p class="about-quote">O mundo já tem plataformas suficientes para mostrar folhas. A Vida Robusta nasceu para fortalecer raízes.</p>
+      </div>
+      <div class="about-copy">
+        <p>Uma árvore centenária não cresce depressa. Uma família forte não se constrói em um fim de semana. Um patrimônio sólido não nasce de decisões impulsivas. Uma vida com propósito também não.</p>
+        <p>A Vida Robusta nasceu para ser um lugar onde voltamos a conversar sobre aquilo que realmente sustenta uma vida bem vivida. Sem promessas fáceis, fórmulas mágicas ou atalhos.</p>
+        <p>Patrimônio, mentalidade, família, saúde e fé não competem entre si. São dimensões que se fortalecem mutuamente e nos ajudam a construir uma vida que permaneça firme quando as circunstâncias mudam.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pilares">
+    <div class="container">
+      <div class="pilares-head">
+        <div>
+          <p class="section-label">Os cinco pilares</p>
+          <h2 class="section-title">Fundamentos que sustentam a caminhada.</h2>
+        </div>
+        <p class="section-intro">Os pilares organizam nossa reflexão, mas não limitam a conversa. Na vida real, todos eles se encontram.</p>
+      </div>
+
+      <div class="pilares-grid">
+        <article class="pilar-card">
+          <div class="foto"><img src="assets/foto-raizes.webp" alt="Raízes profundas de uma árvore centenária"></div>
+          <div class="conteudo">
+            <img class="icone" src="assets/destaque-patrimonio.png" alt="Ícone Patrimônio">
+            <div class="nome">Patrimônio</div>
+            <div class="desc">Construir recursos para servir à vida, e não viver para servir ao dinheiro.</div>
+          </div>
+        </article>
+
+        <article class="pilar-card">
+          <div class="foto"><img src="assets/foto-trilha.webp" alt="Trilha entre árvores, símbolo de direção e mentalidade"></div>
+          <div class="conteudo">
+            <img class="icone" src="assets/destaque-mentalidade.png" alt="Ícone Mentalidade">
+            <div class="nome">Mentalidade</div>
+            <div class="desc">Clareza para decidir bem mesmo quando o caminho ainda não é óbvio.</div>
+          </div>
+        </article>
+
+        <article class="pilar-card">
+          <div class="foto"><img src="assets/foto-portal.webp" alt="Portal de pedra em uma floresta, símbolo da fé"></div>
+          <div class="conteudo">
+            <svg class="faith-icon" viewBox="0 0 24 24" aria-label="Ícone Fé"><path d="M12 3v18"/><path d="M7 8h10"/></svg>
+            <div class="nome">Fé</div>
+            <div class="desc">Reconhecer que existe um propósito maior do que nós mesmos.</div>
+          </div>
+        </article>
+
+        <article class="pilar-card">
+          <div class="foto"><img src="assets/foto-floresta.webp" alt="Floresta, símbolo de família, vínculo e comunidade"></div>
+          <div class="conteudo">
+            <img class="icone" src="assets/destaque-familia.png" alt="Ícone Família">
+            <div class="nome">Família</div>
+            <div class="desc">Relacionamentos que sustentam aquilo que construímos ao longo da vida.</div>
+          </div>
+        </article>
+
+        <article class="pilar-card">
+          <div class="foto"><img src="assets/foto-tronco.webp" alt="Anéis de um tronco, símbolo de saúde e longevidade"></div>
+          <div class="conteudo">
+            <img class="icone" src="assets/destaque-saude.png" alt="Ícone Saúde">
+            <div class="nome">Saúde</div>
+            <div class="desc">Cuidar do corpo e da energia para sustentar tudo o que o propósito exige.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-band">
+    <div class="container">
+      <div class="divider"></div>
+      <p>Uma árvore não cresce olhando para os frutos. Ela cresce fortalecendo as raízes.</p>
+    </div>
+  </section>
+
+  <section id="conversa">
+    <div class="container conversation-grid">
+      <article class="conversation-card">
+        <div class="conversation-number">Conversa nº 1</div>
+        <h3>As pessoas cuidam muito das folhas e quase nunca das raízes.</h3>
+        <p>Vivemos cercados por resultados visíveis. Aquilo que aparece costuma receber toda a atenção. Mas quase tudo o que realmente sustenta uma vida permanece escondido.</p>
+        <a class="btn btn-primary" href="#">Em breve: ler a conversa</a>
+      </article>
+      <div class="conversation-image">
+        <img src="assets/foto-raizes.webp" alt="Raízes de uma árvore antiga">
+      </div>
+    </div>
+  </section>
+
+  <section class="tools" id="ferramentas">
+    <div class="container tools-grid">
+      <div>
+        <p class="section-label">Ferramentas</p>
+        <h2 class="section-title">Clareza para transformar reflexão em ação.</h2>
+        <p class="section-intro">As ferramentas da Vida Robusta serão simples, práticas e orientadas à vida real. Começamos pelas finanças e avançaremos aos poucos.</p>
+      </div>
+      <div class="tool-list">
+        <a class="tool" href="dfi-express/">
+          <div class="tool-top">
+            <span class="tool-name">Diagnóstico Financeiro Express</span>
+            <span class="tool-tag tag-live">Disponível</span>
+          </div>
+          <p class="tool-desc">Perguntas objetivas, em poucos minutos, para um retrato direto da sua saúde financeira hoje.</p>
+        </a>
+
+        <div class="tool soon">
+          <div class="tool-top">
+            <span class="tool-name">Orçamento Financeiro</span>
+            <span class="tool-tag tag-soon">Em breve</span>
+          </div>
+          <p class="tool-desc">Acompanhe seus gastos sem precisar montar ou manter uma planilha complicada.</p>
+        </div>
+
+        <div class="tool soon">
+          <div class="tool-top">
+            <span class="tool-name">Análise Financeira</span>
+            <span class="tool-tag tag-soon">Em breve</span>
+          </div>
+          <p class="tool-desc">Cruze seus últimos meses com seus objetivos e identifique onde ajustar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <div class="footer-links">
-    <a href="mailto:contato@vidarobusta.com.br">contato@vidarobusta.com.br</a>
-    <a href="https://instagram.com/souigoraraujo" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.youtube.com/@souigoraraujo" target="_blank" rel="noopener">YouTube</a>
-    <a href="privacidade.html">Política de Privacidade</a>
-    <a href="termos.html">Termos de Uso</a>
+  <div class="container">
+    <p class="footer-phrase">A Vida Robusta não nasceu para oferecer respostas prontas. Nasceu para iniciar conversas que permanecem.</p>
+    <div class="footer-links">
+      <a href="mailto:contato@vidarobusta.com.br">contato@vidarobusta.com.br</a>
+      <a href="https://instagram.com/souigoraraujo" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@souigoraraujo" target="_blank" rel="noopener">YouTube</a>
+      <a href="privacidade.html">Política de Privacidade</a>
+      <a href="termos.html">Termos de Uso</a>
+    </div>
+    <div class="footer-brand">© 2026 Vida Robusta. Todos os direitos reservados.</div>
   </div>
-  <div class="footer-brand">© 2026 Vida Robusta. Todos os direitos reservados.</div>
 </footer>
 
 </body>
