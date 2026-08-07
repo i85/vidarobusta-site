@@ -36,7 +36,7 @@
     --sombra:0 18px 50px rgba(22,59,44,.10);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:96px;}
   html,body{margin:0;padding:0;}
   body{
     background:var(--off);
@@ -59,10 +59,12 @@
     min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:28px;
   }
   .brand-mini{display:flex;align-items:center;text-decoration:none;}
-  .brand-mini img{width:168px;height:auto;display:block;}
+  .brand-mini img{width:210px;height:auto;display:block;}
   .nav{display:flex;align-items:center;gap:22px;font-size:13px;}
   .nav a{text-decoration:none;color:var(--verde-escuro);}
   .nav a:hover{color:var(--dourado);}
+
+  main section[id]{scroll-margin-top:96px;}
 
   /* Abertura */
   .hero{padding:78px 0 82px;}
@@ -193,7 +195,7 @@
   }
   @media (max-width:680px){
     .nav{display:none;}
-    .brand-mini img{width:145px;}
+    .brand-mini img{width:176px;}
     .hero h1{font-size:52px;}
     section{padding:60px 0;}
     .pilares-grid{grid-template-columns:1fr;}
@@ -350,20 +352,20 @@
           <p class="tool-desc">Perguntas objetivas, em poucos minutos, para um retrato direto da sua saúde financeira hoje.</p>
         </a>
 
+        <a class="tool" href="https://vidarobusta.com.br/analise-3-meses/">
+          <div class="tool-top">
+            <span class="tool-name">Análise Financeira</span>
+            <span class="tool-tag tag-live">Disponível</span>
+          </div>
+          <p class="tool-desc">Cruze seus últimos três meses com seus objetivos e identifique onde ajustar.</p>
+        </a>
+
         <div class="tool soon">
           <div class="tool-top">
             <span class="tool-name">Orçamento Financeiro</span>
             <span class="tool-tag tag-soon">Em breve</span>
           </div>
           <p class="tool-desc">Acompanhe seus gastos sem precisar montar ou manter uma planilha complicada.</p>
-        </div>
-
-        <div class="tool soon">
-          <div class="tool-top">
-            <span class="tool-name">Análise Financeira</span>
-            <span class="tool-tag tag-soon">Em breve</span>
-          </div>
-          <p class="tool-desc">Cruze seus últimos meses com seus objetivos e identifique onde ajustar.</p>
         </div>
       </div>
     </div>
