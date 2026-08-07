@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vida Robusta</title>
+<link rel="icon" type="image/png" href="assets/emblema-vida-robusta.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vida Robusta">
+<meta property="og:title" content="Vida Robusta — Raízes fortes. Frutos duradouros.">
+<meta property="og:description" content="Ferramentas gratuitas pra você organizar sua vida financeira, sem curso e sem planilha complicada.">
+<meta property="og:image" content="https://vidarobusta.com.br/assets/logo-vida-robusta-completo.png">
+<meta property="og:url" content="https://vidarobusta.com.br/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vida Robusta — Raízes fortes. Frutos duradouros.">
+<meta name="twitter:description" content="Ferramentas gratuitas pra você organizar sua vida financeira, sem curso e sem planilha complicada.">
+<meta name="twitter:image" content="https://vidarobusta.com.br/assets/logo-vida-robusta-completo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -42,32 +55,37 @@
     margin:0;
   }
 
-  /* ---------- PILARES (fundo escuro, medalhões dourados) ---------- */
+  /* ---------- PILARES (fundo claro, cards com foto + selo) ---------- */
   .pilares{
-    background:radial-gradient(120% 100% at 50% 0%, var(--verde) 0%, var(--verde-escuro) 100%);
-    padding:44px 20px 40px;
+    max-width:640px; margin:0 auto; padding:28px 24px 6px;
   }
   .pilares-label{
-    text-align:center; font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
-    letter-spacing:0.2em; text-transform:uppercase; color:var(--dourado-claro); margin:0 0 28px;
+    font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--marrom); margin:0 0 16px;
   }
-  .pilar-grid{
-    display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; max-width:640px; margin:0 auto;
+  .pilar-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+  .pilar-card{
+    border-radius:4px; overflow:hidden; background:#fff; border:1px solid rgba(92,70,50,0.15);
   }
-  .pilar{width:110px; display:flex; flex-direction:column; align-items:center;}
-  .pilar img{width:100%; height:auto; display:block;}
-  .pilar.placeholder{
-    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
-    aspect-ratio:1/1; padding:8px;
+  .pilar-card .foto{
+    height:110px; display:flex; align-items:center; justify-content:center;
+    font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--dourado-claro); opacity:0.7;
   }
-  .pilar.placeholder svg{width:34px; height:34px; stroke:var(--dourado-claro); fill:none; stroke-width:1.6; stroke-linecap:round;}
-  .pilar.placeholder span{
-    font-family:'Cormorant Garamond',serif; font-size:15px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--dourado-claro);
+  .pilar-card .conteudo{padding:14px 16px;}
+  .pilar-card .conteudo img,
+  .pilar-card .conteudo svg{width:40px; height:40px; display:block; margin-bottom:8px;}
+  .pilar-card .conteudo svg{stroke:var(--dourado); fill:none; stroke-width:1.6; stroke-linecap:round;}
+  .pilar-card .nome{
+    font-family:'Cormorant Garamond',serif; font-weight:600; font-size:16px; color:var(--verde); margin-bottom:5px;
   }
+  .pilar-card .desc{font-size:12px; color:var(--marrom); line-height:1.5;}
+  .pilar-card.largo{display:flex; margin-bottom:16px;}
+  .pilar-card.largo .foto{width:130px; flex:0 0 130px; height:auto; text-align:center;}
+  .pilar-card.largo .conteudo{padding:16px 18px;}
 
   /* ---------- CONCEITO ---------- */
-  .conceito{max-width:520px; margin:0 auto; padding:52px 24px 44px; text-align:center;}
+  .conceito{max-width:520px; margin:0 auto; padding:34px 24px 44px; text-align:center;}
   .conceito p{
     font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500;
     font-size:clamp(19px,3.2vw,23px); line-height:1.5; color:var(--verde); margin:0;
@@ -102,12 +120,23 @@
   .tool.soon:hover{border-color:rgba(92,70,50,0.18);}
 
   footer{
-    text-align:center; padding:28px 24px 40px;
+    text-align:center; padding:32px 24px 40px; border-top:1px solid rgba(92,70,50,0.15);
+    max-width:640px; margin:0 auto;
+  }
+  footer .footer-links{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:8px 18px; margin-bottom:16px;
+    font-family:'Inter',sans-serif; font-size:12px;
+  }
+  footer .footer-links a{color:var(--verde); text-decoration:none;}
+  footer .footer-links a:hover{text-decoration:underline;}
+  footer .footer-brand{
     font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.08em; color:var(--marrom); opacity:0.7;
   }
 
-  @media (max-width:420px){
-    .pilar{width:88px;}
+  @media (max-width:460px){
+    .pilar-row{grid-template-columns:1fr;}
+    .pilar-card.largo{flex-direction:column;}
+    .pilar-card.largo .foto{width:100%; height:90px;}
   }
 </style>
 </head>
@@ -120,15 +149,52 @@
 
 <div class="pilares">
   <p class="pilares-label">Os cinco pilares</p>
-  <div class="pilar-grid">
-    <div class="pilar"><img src="assets/destaque-patrimonio.png" alt="Patrimônio"></div>
-    <div class="pilar"><img src="assets/destaque-mentalidade.png" alt="Mentalidade"></div>
-    <div class="pilar"><img src="assets/destaque-familia.png" alt="Família"></div>
-    <div class="pilar"><img src="assets/destaque-saude.png" alt="Saúde"></div>
-    <!-- Placeholder temporário: trocar por assets/destaque-fe.png quando o arquivo oficial chegar -->
-    <div class="pilar placeholder">
+
+  <div class="pilar-row">
+    <div class="pilar-card">
+      <div class="foto" style="background:radial-gradient(circle at 30% 20%,#4A3323,#2B1D14 75%);">[foto: raízes]</div>
+      <div class="conteudo">
+        <img src="assets/destaque-patrimonio.png" alt="Patrimônio">
+        <div class="nome">Patrimônio</div>
+        <div class="desc">Riqueza que sustenta liberdade, não só acumula números.</div>
+      </div>
+    </div>
+    <div class="pilar-card">
+      <div class="foto" style="background:radial-gradient(circle at 60% 40%,#3A4A2E,#1B241A 75%);">[foto: trilha]</div>
+      <div class="conteudo">
+        <img src="assets/destaque-mentalidade.png" alt="Mentalidade">
+        <div class="nome">Mentalidade</div>
+        <div class="desc">Clareza pra decidir bem quando o caminho não é óbvio.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pilar-card largo">
+    <div class="foto" style="background:radial-gradient(circle at 50% 25%,#4A4030,#241F17 75%);">[foto: portal]</div>
+    <div class="conteudo">
+      <!-- Placeholder temporário: trocar por assets/destaque-fe.png quando o arquivo oficial chegar -->
       <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M7 8h10"/></svg>
-      <span>Fé</span>
+      <div class="nome">Fé</div>
+      <div class="desc">Raízes firmadas em algo maior que sustentam o resto.</div>
+    </div>
+  </div>
+
+  <div class="pilar-row">
+    <div class="pilar-card">
+      <div class="foto" style="background:radial-gradient(circle at 70% 30%,#3D5940,#1C2B1F 75%);">[foto: floresta]</div>
+      <div class="conteudo">
+        <img src="assets/destaque-familia.png" alt="Família">
+        <div class="nome">Família</div>
+        <div class="desc">Relacionamentos que sustentam o que se constrói na vida.</div>
+      </div>
+    </div>
+    <div class="pilar-card">
+      <div class="foto" style="background:radial-gradient(circle at 40% 60%,#6B4A32,#3A2818 80%);">[foto: tronco]</div>
+      <div class="conteudo">
+        <img src="assets/destaque-saude.png" alt="Saúde">
+        <div class="nome">Saúde</div>
+        <div class="desc">Cuidar do corpo pra sustentar tudo que o propósito exige.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -167,7 +233,16 @@
   </div>
 </div>
 
-<footer>VIDAROBUSTA.COM.BR</footer>
+<footer>
+  <div class="footer-links">
+    <a href="mailto:contato@vidarobusta.com.br">contato@vidarobusta.com.br</a>
+    <a href="https://instagram.com/souigoraraujo" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.youtube.com/@souigoraraujo" target="_blank" rel="noopener">YouTube</a>
+    <a href="privacidade.html">Política de Privacidade</a>
+    <a href="termos.html">Termos de Uso</a>
+  </div>
+  <div class="footer-brand">© 2026 Vida Robusta. Todos os direitos reservados.</div>
+</footer>
 
 </body>
 </html>
