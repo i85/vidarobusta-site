@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de 3 Meses — Vida Robusta</title>
+<link rel="icon" type="image/png" href="../assets/emblema-vida-robusta.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vida Robusta">
+<meta property="og:title" content="Análise de 3 Meses — Vida Robusta">
+<meta property="og:description" content="Seus últimos 3 meses fechados de verdade: extrato, gasto real, dívida real. O passo seguinte ao Diagnóstico Financeiro Express.">
+<meta property="og:image" content="https://vidarobusta.com.br/assets/logo-vida-robusta-completo.png">
+<meta property="og:url" content="https://vidarobusta.com.br/analise-3-meses/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#1F4D3A; --verde-escuro:#163B2C; --marrom:#5C4632; --areia:#D8C8B2;
+    --off:#F8F7F2; --dourado:#B08D57; --dourado-claro:#CBA96B;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--off); color:var(--marrom); font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  .wrap{max-width:600px; margin:0 auto; padding:0 24px;}
+
+  /* topo — só a logo, sem navegação */
+  .top{text-align:center; padding:36px 24px 0;}
+  .top img{width:52px; height:auto;}
+
+  .hero{text-align:center; padding:24px 0 8px;}
+  .eyebrow{
+    font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--dourado); margin-bottom:14px;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--verde);
+    font-size:clamp(30px,6vw,42px); line-height:1.12; margin:0 0 16px;
+  }
+  h1 em{font-style:italic; font-weight:500; color:var(--dourado);}
+  .sub{font-size:15.5px; color:var(--marrom); max-width:46ch; margin:0 auto;}
+
+  .divider{width:36px; height:1px; background:var(--dourado); margin:32px auto;}
+
+  .card{
+    background:#fff; border:1px solid rgba(92,70,50,0.15); border-radius:6px; padding:28px 26px; margin-bottom:20px;
+  }
+
+  .beneficios{list-style:none; margin:0; padding:0;}
+  .beneficios li{
+    display:flex; gap:12px; padding:12px 0; border-top:1px dashed rgba(92,70,50,0.18); font-size:14.5px;
+  }
+  .beneficios li:first-child{border-top:none;}
+  .beneficios .check{
+    flex:0 0 18px; width:18px; height:18px; border-radius:50%; background:rgba(31,77,58,0.1);
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .beneficios .check svg{width:10px; height:10px; stroke:var(--verde); stroke-width:3; fill:none;}
+
+  .price-block{text-align:center; padding:8px 0 4px;}
+  .price-old{
+    font-family:'Inter',sans-serif; font-size:16px; color:var(--marrom); opacity:0.55;
+    text-decoration:line-through; margin-bottom:2px;
+  }
+  .price-new{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:52px; color:var(--verde); line-height:1;}
+  .price-new span{font-size:22px; font-weight:500; color:var(--marrom);}
+  .price-tag{
+    display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600;
+    letter-spacing:0.05em; text-transform:uppercase; background:rgba(176,141,87,0.16); color:var(--dourado);
+    padding:5px 12px; border-radius:20px;
+  }
+
+  .bump{
+    border:1.5px dashed var(--dourado); border-radius:6px; padding:20px 22px; margin:22px 0;
+    background:rgba(176,141,87,0.06); cursor:pointer;
+  }
+  .bump-top{display:flex; gap:14px; align-items:flex-start;}
+  .bump input[type=checkbox]{
+    margin-top:3px; width:19px; height:19px; flex:0 0 19px; accent-color:var(--verde); cursor:pointer;
+  }
+  .bump-title{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:19px; color:var(--verde); margin-bottom:4px;}
+  .bump-desc{font-size:13.5px; color:var(--marrom); line-height:1.55;}
+  .bump-price{margin-top:8px; font-size:13.5px;}
+  .bump-price .old{text-decoration:line-through; opacity:0.55; margin-right:8px;}
+  .bump-price .new{font-weight:700; color:var(--verde); font-size:15px;}
+  .bump-terms{
+    margin-top:14px; padding-top:14px; border-top:1px dashed rgba(92,70,50,0.2);
+    font-size:11.5px; color:var(--marrom); opacity:0.8; line-height:1.6;
+  }
+
+  .total-row{
+    display:flex; justify-content:space-between; align-items:center; padding:16px 4px 4px;
+    font-family:'Inter',sans-serif;
+  }
+  .total-label{font-size:13px; color:var(--marrom);}
+  .total-value{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:28px; color:var(--verde);}
+
+  .cta-btn{
+    display:block; width:100%; appearance:none; border:none; cursor:pointer; text-decoration:none; text-align:center;
+    background:var(--verde); color:var(--off); font-family:'Inter',sans-serif; font-size:15px; font-weight:600;
+    padding:17px 22px; border-radius:6px; margin-top:18px; transition:background .15s ease;
+  }
+  .cta-btn:hover{background:var(--verde-escuro);}
+  .fine{
+    text-align:center; font-size:11.5px; color:var(--marrom); opacity:0.65; margin-top:10px;
+  }
+
+  .garantia{
+    text-align:center; padding:24px 20px; margin:8px 0 32px;
+  }
+  .garantia p{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; color:var(--verde); margin:0;}
+
+  footer{
+    text-align:center; padding:28px 24px 48px; border-top:1px solid rgba(92,70,50,0.15);
+    font-size:11px; color:var(--marrom); opacity:0.65;
+  }
+  footer a{color:var(--marrom);}
+
+  @media (max-width:420px){
+    .price-new{font-size:44px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <img src="../assets/emblema-vida-robusta.png" alt="Vida Robusta">
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Depois do Diagnóstico Express</div>
+    <h1>Seus últimos 3 meses <em>fechados</em>, de verdade.</h1>
+    <p class="sub">O Diagnóstico Express foi uma fotografia geral, baseada em estimativa. Agora é hora de olhar pra trás com dados reais — extrato, gasto de verdade, dívida de verdade — e confirmar (ou corrigir) o que apareceu ali.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card">
+    <ul class="beneficios">
+      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Revisão dos seus últimos 3 meses fechados, mês a mês</span></li>
+      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Comparação entre o que você imaginava gastar e o que realmente gastou</span></li>
+      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Identificação de padrões que só aparecem olhando mais de um mês junto</span></li>
+      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Prioridades ajustadas com base em dados reais, não estimativa</span></li>
+    </ul>
+  </div>
+
+  <div class="price-block">
+    <div class="price-old">De R$ 97,00</div>
+    <div class="price-new">R$ 67<span>,00</span></div>
+    <div class="price-tag">R$ 30 de desconto por tempo limitado</div>
+  </div>
+
+  <label class="bump" id="bumpLabel">
+    <div class="bump-top">
+      <input type="checkbox" id="bumpCheck">
+      <div>
+        <div class="bump-title">Quero levar também: Consultoria 1h Online</div>
+        <div class="bump-desc">Uma hora comigo, ao vivo, pra destrinchar sua Análise de 3 Meses e montar um plano de ação junto com você.</div>
+        <div class="bump-price"><span class="old">De R$ 297,00</span><span class="new">Por + R$ 147,00</span></div>
+      </div>
+    </div>
+    <div class="bump-terms">
+      A consultoria só é liberada depois que a Análise de 3 Meses é preenchida, com horário marcado em agenda própria. Faltas no horário agendado exigem novo pagamento para remarcar.
+    </div>
+  </label>
+
+  <div class="total-row">
+    <span class="total-label">Total de hoje</span>
+    <span class="total-value" id="totalValue">R$ 67,00</span>
+  </div>
+
+  <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
+  <p class="fine">Pagamento via Pix, confirmado diretamente com a gente pelo WhatsApp.</p>
+
+  <div class="garantia">
+    <p>Feito pra quem já sabe que precisa de clareza, não só de mais um número solto.</p>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Vida Robusta. Todos os direitos reservados.<br>
+  <a href="../privacidade.html">Política de Privacidade</a> · <a href="../termos.html">Termos de Uso</a>
+</footer>
+
+<script>
+const waNumber = '5547996055443';
+const bumpCheck = document.getElementById('bumpCheck');
+const bumpLabel = document.getElementById('bumpLabel');
+const totalValue = document.getElementById('totalValue');
+const ctaBtn = document.getElementById('ctaBtn');
+
+function formatBRL(v){
+  return v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function update(){
+  const comBump = bumpCheck.checked;
+  const total = comBump ? 67 + 147 : 67;
+  totalValue.textContent = `R$ ${formatBRL(total)}`;
+  bumpLabel.style.borderColor = comBump ? '#1F4D3A' : '#B08D57';
+  bumpLabel.style.background = comBump ? 'rgba(31,77,58,0.06)' : 'rgba(176,141,87,0.06)';
+
+  const msg = comBump
+    ? `Olá! Quero a Análise de 3 Meses (R$ 67,00) + a Consultoria 1h Online (R$ 147,00). Total: R$ ${formatBRL(total)}.`
+    : `Olá! Quero a Análise de 3 Meses (R$ 67,00).`;
+  ctaBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+}
+
+bumpCheck.addEventListener('change', update);
+update();
+</script>
+
+</body>
+</html>
