@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquilo que sustenta uma vida — Conversa nº 001 | Vida Robusta</title>
+<meta name="description" content="Uma reflexão sobre raízes, problemas, estações e aquilo que permanece quando ninguém está olhando.">
+<link rel="icon" type="image/png" href="../../assets/emblema-vida-robusta.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Vida Robusta">
+<meta property="og:title" content="Aquilo que sustenta uma vida — Conversa nº 001">
+<meta property="og:description" content="Uma reflexão sobre raízes, problemas, estações e aquilo que permanece quando ninguém está olhando.">
+<meta property="og:image" content="https://vidarobusta.com.br/assets/foto-raizes.webp">
+<meta property="og:url" content="https://vidarobusta.com.br/conversas/001-aquilo-que-sustenta-uma-vida/">
+<meta property="article:published_time" content="2026-08-08">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#1F4D3A;--verde-escuro:#163B2C;--verde-profundo:#0F2E22;
+    --marrom:#5C4632;--off:#F8F7F2;--dourado:#B08D57;
+    --linha:rgba(92,70,50,.17);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0}
+  body{background:var(--off);color:var(--marrom);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .container{width:min(1080px,calc(100% - 40px));margin:0 auto}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(248,247,242,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
+  .topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+  .brand-mini{display:flex;align-items:center;text-decoration:none}
+  .brand-mini img{width:210px;height:auto;display:block}
+  .nav{display:flex;align-items:center;gap:22px;font-size:13px}
+  .nav a{text-decoration:none;color:var(--verde-escuro)}
+  .nav a:hover{color:var(--dourado)}
+  .article-shell{width:min(760px,calc(100% - 40px));margin:0 auto}
+  .article-header{padding:104px 0 66px;text-align:center}
+  .eyebrow{margin:0 0 22px;font-size:11px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--dourado)}
+  h1{font-family:'Cormorant Garamond',serif;color:var(--verde-escuro);font-size:clamp(48px,8vw,76px);line-height:.98;font-weight:600;letter-spacing:-.025em;margin:0 auto;max-width:720px;text-wrap:balance}
+  .subtitle{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.48;max-width:610px;margin:30px auto 20px;color:var(--marrom);text-wrap:balance}
+  time{font-size:12px;letter-spacing:.06em;opacity:.68}
+  .divider{display:flex;align-items:center;gap:17px}
+  .divider:before,.divider:after{content:"";height:1px;background:var(--linha);flex:1}
+  .divider span{width:7px;height:7px;border:1px solid var(--dourado);transform:rotate(45deg)}
+  .article-body{padding:66px 0 105px}
+  .article-body p{font-family:'Cormorant Garamond',serif;color:#463c33;font-size:clamp(21px,2.4vw,24px);line-height:1.75;margin:0 0 1.45em}
+  .article-body .opening:first-letter{float:left;color:var(--verde-escuro);font-size:4.2em;font-weight:500;line-height:.74;margin:.12em .1em 0 0}
+  .article-body .short-line{color:var(--verde-escuro);font-weight:500;margin-top:-.35em;margin-bottom:1.05em}
+  .question{border-top:1px solid var(--linha);padding:76px 0 80px;text-align:center}
+  .question .eyebrow{margin-bottom:20px}
+  .question-text{font-family:'Cormorant Garamond',serif;color:var(--verde-escuro);font-size:clamp(29px,5vw,41px);font-weight:600;line-height:1.3;margin:0 auto;max-width:700px;text-wrap:balance}
+  .article-nav{display:flex;justify-content:space-between;gap:28px;padding:29px 0;border-top:1px solid var(--linha);font-size:13px;font-weight:600;color:var(--verde-escuro)}
+  .article-nav a{text-decoration:none}
+  .article-nav a:hover{color:var(--dourado)}
+  .next-disabled{color:rgba(92,70,50,.42);cursor:default}
+  footer{padding:54px 0 38px;border-top:1px solid var(--linha)}
+  .footer-phrase{font-family:'Cormorant Garamond',serif;font-size:27px;line-height:1.35;color:var(--verde-escuro);max-width:700px;margin:0 auto 32px;text-align:center;font-style:italic}
+  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 20px;margin-bottom:18px;font-size:12px}
+  .footer-links a{color:var(--verde);text-decoration:none}
+  .footer-links a:hover{text-decoration:underline}
+  .footer-brand{text-align:center;font-size:11px;letter-spacing:.08em;opacity:.68}
+  :focus-visible{outline:2px solid var(--dourado);outline-offset:4px}
+  @media(max-width:680px){
+    .nav{display:none}.brand-mini img{width:176px}.article-header{padding:74px 0 48px}
+    .article-body{padding:52px 0 78px}.question{padding:60px 0 64px}
+    .article-nav{font-size:12px;align-items:flex-start}.next-disabled{text-align:right}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand-mini" href="../../index.html#inicio" aria-label="Vida Robusta — início">
+      <img src="../../assets/logo-vida-robusta-completo.png" alt="Vida Robusta">
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="../../index.html#sobre">Sobre</a>
+      <a href="../../index.html#pilares">Pilares</a>
+      <a href="../../index.html#conversa" aria-current="page">Conversas</a>
+      <a href="../../index.html#ferramentas">Ferramentas</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <article class="article-shell">
+    <header class="article-header">
+      <p class="eyebrow">Conversa nº 001</p>
+      <h1>Aquilo que sustenta uma vida</h1>
+      <p class="subtitle">Uma reflexão sobre raízes, problemas, estações e aquilo que permanece quando ninguém está olhando.</p>
+      <time datetime="2026-08-08">8 de agosto de 2026</time>
+    </header>
+    <div class="divider" aria-hidden="true"><span></span></div>
+    <div class="article-body">
+        <p class="opening">Existem momentos que dividem a nossa vida em antes e depois. Curiosamente, quase nunca percebemos isso enquanto eles acontecem.</p>
+        <p>Às vezes imaginamos que os grandes pontos de mudança chegam acompanhados de acontecimentos extraordinários. Uma notícia inesperada, uma oportunidade que surge de repente, uma perda, uma conquista, uma decisão que muda completamente o rumo das coisas.</p>
+        <p class="short-line">Alguns realmente acontecem assim.</p>
+        <p class="short-line">Mas muitos não.</p>
+        <p class="short-line">Muitos chegam disfarçados de dias comuns.</p>
+        <p>Um café que se prolongou um pouco mais. Uma conversa que continuou ecoando depois que terminou. Uma pergunta feita por um filho. Uma dificuldade que nos obrigou a repensar alguma coisa. Um livro aberto na página certa. Um instante de silêncio no meio de uma semana corrida.</p>
+        <p>Na hora, quase nada parece ter acontecido.</p>
+        <p>Só mais tarde percebemos que alguma coisa começou a mudar ali.</p>
+        <p>Hoje gosto de pensar nesses momentos como pontos de inflexão. Não necessariamente porque algo extraordinário aconteceu do lado de fora, mas porque alguma coisa começou a mudar do lado de dentro.</p>
+        <p>Foi mais ou menos assim que uma ideia começou a tomar forma em mim.</p>
+        <p>Em um dia aparentemente comum, parei por alguns minutos diante de uma árvore muito antiga.</p>
+        <p>Não havia nada de extraordinário naquele momento. Era apenas uma pausa no meio da rotina. Hoje, olhando para trás, percebo que muitas das conversas mais importantes da nossa vida começam exatamente assim. Não com grandes acontecimentos, mas com pequenos instantes que quase deixamos passar.</p>
+        <p class="short-line">Fiquei algum tempo olhando aquela árvore.</p>
+        <p>Não sei quantos anos ela tinha. Também não sei quantas chuvas, secas, ventos fortes ou mudanças de estação já havia enfrentado.</p>
+        <p>Mas havia alguma coisa nela que chamava atenção.</p>
+        <p class="short-line">Não era apenas o tamanho.</p>
+        <p class="short-line">Era a sensação de permanência.</p>
+        <p>Aquela árvore parecia pertencer àquele lugar.</p>
+        <p>Seu tronco carregava marcas do tempo. Seus galhos tinham crescido em direções diferentes. Algumas partes pareciam mais novas, outras certamente haviam enfrentado anos difíceis.</p>
+        <p class="short-line">Não era uma árvore perfeita.</p>
+        <p class="short-line">Era uma árvore viva.</p>
+        <p>E talvez exatamente por isso fosse tão bonita.</p>
+        <p>Enquanto a observava, pensei em uma coisa simples.</p>
+        <p>Quando admiramos uma árvore, quase sempre olhamos para aquilo que está acima da terra.</p>
+        <p class="short-line">Vemos o tronco.</p>
+        <p class="short-line">A copa.</p>
+        <p class="short-line">As folhas.</p>
+        <p class="short-line">A sombra.</p>
+        <p class="short-line">Talvez os frutos.</p>
+        <p>Mas dificilmente alguém para diante de uma árvore e pensa primeiro nas raízes.</p>
+        <p class="short-line">É compreensível.</p>
+        <p>Nós admiramos aquilo que conseguimos enxergar.</p>
+        <p>Só que justamente a parte responsável por sustentar tudo permanece escondida.</p>
+        <p class="short-line">As raízes não recebem aplausos.</p>
+        <p class="short-line">Não aparecem nas fotografias.</p>
+        <p class="short-line">Não oferecem frutos diretamente.</p>
+        <p>Mas basta que elas enfraqueçam para que tudo aquilo que vemos acima da terra esteja em risco.</p>
+        <p>E foi impossível não pensar na nossa própria vida.</p>
+        <p>Talvez tenhamos aprendido a fazer exatamente o contrário do que uma árvore faz.</p>
+        <p>Passamos grande parte do tempo cuidando do que aparece.</p>
+        <p class="short-line">O trabalho.</p>
+        <p class="short-line">A renda.</p>
+        <p class="short-line">A casa.</p>
+        <p class="short-line">A aparência.</p>
+        <p class="short-line">O patrimônio.</p>
+        <p class="short-line">As viagens.</p>
+        <p class="short-line">Os resultados.</p>
+        <p class="short-line">A imagem que transmitimos.</p>
+        <p>Nada disso é necessariamente ruim. Algumas dessas coisas são importantes e fazem parte de uma vida bem construída.</p>
+        <p>O problema começa quando confundimos aquilo que pode ser visto com aquilo que realmente nos sustenta.</p>
+        <p>Uma árvore pode ter uma copa impressionante e, ainda assim, estar adoecendo por baixo da terra.</p>
+        <p class="short-line">Uma vida também.</p>
+        <p>Foi então que comecei a olhar com um pouco mais de atenção para a minha própria caminhada.</p>
+        <p>Percebi que muitas das dificuldades que enfrentamos não surgem necessariamente porque nos falta talento ou inteligência.</p>
+        <p class="short-line">Às vezes o problema está na sustentação.</p>
+        <p>E, quanto mais pensava nisso, mais percebia outra coisa.</p>
+        <p>Talvez tenhamos uma relação estranha com os problemas.</p>
+        <p>Desde cedo aprendemos que problema é algo ruim. Uma coisa que precisa desaparecer o mais rápido possível para que possamos finalmente voltar à vida normal.</p>
+        <p>Só que a vida normal também é feita de problemas.</p>
+        <p class="short-line">Terminamos um e outro aparece.</p>
+        <p class="short-line">Superamos uma fase e uma nova começa.</p>
+        <p>Resolvemos aquilo que ontem parecia enorme e, algum tempo depois, estamos diante de uma questão que exige ainda mais de nós.</p>
+        <p>Durante muito tempo isso pode parecer frustrante.</p>
+        <p>Até percebermos que talvez parte da vida funcione justamente assim.</p>
+        <p>Algumas dificuldades não aparecem apenas para serem removidas do caminho. Elas revelam coisas.</p>
+        <p class="short-line">Mostram onde estamos frágeis.</p>
+        <p class="short-line">Expõem aquilo que evitávamos.</p>
+        <p>Obrigam-nos a desenvolver capacidades que provavelmente não desenvolveríamos em tempos confortáveis.</p>
+        <p>Isso não significa procurar sofrimento ou romantizar momentos difíceis.</p>
+        <p>Há dificuldades que realmente gostaríamos de nunca enfrentar.</p>
+        <p>Mas, quando elas chegam, existe uma escolha que continua sendo nossa.</p>
+        <p>Podemos gastar toda a energia perguntando por que aquilo aconteceu conosco.</p>
+        <p>Ou podemos, aos poucos, começar a perguntar o que aquela situação exige de nós.</p>
+        <p>Existe uma diferença enorme entre as duas perguntas.</p>
+        <p class="short-line">A primeira pode nos deixar parados.</p>
+        <p class="short-line">A segunda nos coloca em movimento.</p>
+        <p>Talvez seja por isso que algumas das pessoas mais maduras que conhecemos não tiveram vidas mais fáceis. Elas simplesmente aprenderam a atravessar dificuldades sem permitir que cada dificuldade definisse quem elas seriam.</p>
+        <p class="short-line">Quando conseguem, aprendem.</p>
+        <p class="short-line">Quando erram, observam.</p>
+        <p class="short-line">Quando caem, procuram entender por quê.</p>
+        <p>Quando encontram um obstáculo, não passam a vida inteira batendo contra ele.</p>
+        <p class="short-line">Procuram outra passagem.</p>
+        <p class="short-line">A água faz isso de uma maneira bonita.</p>
+        <p>Ela encontra uma pedra e não começa uma guerra contra a pedra.</p>
+        <p class="short-line">Ela contorna.</p>
+        <p class="short-line">Procura frestas.</p>
+        <p class="short-line">Muda de direção quando precisa.</p>
+        <p class="short-line">Continua seguindo.</p>
+        <p>Com o tempo, aquilo que parecia mais frágil consegue até transformar aquilo que parecia imóvel.</p>
+        <p>Talvez robustez tenha menos relação com dureza do que imaginamos.</p>
+        <p>Uma pessoa robusta não é alguém que nunca muda de direção.</p>
+        <p>É alguém que sabe o que não pode abandonar, mesmo quando precisa mudar o caminho.</p>
+        <p>Essa reflexão me levou novamente à árvore.</p>
+        <p>Ela também não atravessa todas as estações da mesma maneira.</p>
+        <p class="short-line">Há períodos de crescimento.</p>
+        <p class="short-line">Há períodos de florescimento.</p>
+        <p class="short-line">Há períodos de frutos.</p>
+        <p class="short-line">Há períodos em que perde suas folhas.</p>
+        <p>Se olhássemos apenas para determinada estação, poderíamos até pensar que algo estava errado.</p>
+        <p class="short-line">Mas a árvore continua viva.</p>
+        <p>Ela está apenas respondendo à estação em que se encontra.</p>
+        <p>Essa imagem começou a mudar também a forma como penso sobre as diferentes áreas da nossa vida.</p>
+        <p>Durante algum tempo, usei muito a palavra equilíbrio.</p>
+        <p>Parecia uma boa maneira de explicar uma vida bem construída.</p>
+        <p class="short-line">Hoje tenho algumas reservas.</p>
+        <p>Equilíbrio pode dar a impressão de que precisamos entregar a mesma quantidade de tempo, energia e atenção para todas as áreas da vida ao mesmo tempo.</p>
+        <p class="short-line">Mas a vida real raramente permite isso.</p>
+        <p>Existem períodos em que o trabalho exige muito de nós.</p>
+        <p class="short-line">Outros em que a saúde pede atenção.</p>
+        <p>Há momentos em que precisamos reorganizar nossa vida financeira.</p>
+        <p>E há estações em que a família simplesmente precisa vir para mais perto do centro.</p>
+        <p>Isso não significa que os outros aspectos deixaram de importar.</p>
+        <p>Significa que aprendemos a reconhecer a estação.</p>
+        <p>Talvez uma vida robusta não seja uma vida perfeitamente equilibrada.</p>
+        <p class="short-line">Talvez seja uma vida consciente.</p>
+        <p>Uma vida em que conseguimos olhar para aquilo que estamos construindo e perguntar com sinceridade:</p>
+        <p>Qual parte da minha vida precisa mais de mim agora?</p>
+        <p>Essa pergunta é muito diferente de tentar dar nota dez para tudo.</p>
+        <p class="short-line">Talvez não consigamos.</p>
+        <p class="short-line">Aliás, provavelmente não conseguiremos.</p>
+        <p class="short-line">Somos limitados.</p>
+        <p class="short-line">Temos vinte e quatro horas.</p>
+        <p class="short-line">Temos responsabilidades.</p>
+        <p class="short-line">Temos fases.</p>
+        <p class="short-line">Temos imprevistos.</p>
+        <p class="short-line">Temos cansaço.</p>
+        <p>E talvez uma das grandes fontes de frustração do nosso tempo seja a tentativa de viver várias vidas perfeitas ao mesmo tempo.</p>
+        <p class="short-line">Queremos excelência profissional.</p>
+        <p class="short-line">Independência financeira.</p>
+        <p class="short-line">Um casamento extraordinário.</p>
+        <p class="short-line">Filhos bem acompanhados.</p>
+        <p class="short-line">Saúde impecável.</p>
+        <p class="short-line">Uma vida espiritual profunda.</p>
+        <p class="short-line">Tempo para estudar.</p>
+        <p class="short-line">Tempo para descansar.</p>
+        <p class="short-line">Tempo para viajar.</p>
+        <p class="short-line">Tempo para os amigos.</p>
+        <p class="short-line">Tudo agora.</p>
+        <p>Mas uma árvore não produz folhas, flores, frutos e novas raízes com a mesma intensidade todos os dias do ano.</p>
+        <p>Por que nós deveríamos exigir isso de nós mesmos?</p>
+        <p class="short-line">Isso não é um convite à negligência.</p>
+        <p class="short-line">É justamente o contrário.</p>
+        <p class="short-line">É um convite à consciência.</p>
+        <p>Porque reconhecer que uma área não pode receber toda a nossa atenção agora não significa esquecê-la.</p>
+        <p>Significa saber que precisaremos voltar a ela.</p>
+        <p>Os cinco pilares que começaram a surgir dessa reflexão funcionam dessa maneira para mim.</p>
+        <p class="short-line">Patrimônio.</p>
+        <p class="short-line">Mentalidade.</p>
+        <p class="short-line">Família.</p>
+        <p class="short-line">Saúde.</p>
+        <p class="short-line">Fé.</p>
+        <p>Não como cinco caixas que precisam estar permanentemente marcadas.</p>
+        <p>Nem como cinco notas que precisam permanecer iguais.</p>
+        <p class="short-line">Mas como partes de uma mesma vida.</p>
+        <p>Em algumas estações, uma delas precisará de mais cuidado.</p>
+        <p class="short-line">Em outras, outra pedirá nossa atenção.</p>
+        <p>O que não podemos fazer é viver durante anos ignorando completamente uma delas e imaginar que as consequências nunca aparecerão.</p>
+        <p>A árvore pode direcionar mais energia para determinada parte.</p>
+        <p class="short-line">Mas continua sendo uma árvore inteira.</p>
+        <p>Talvez nós também precisemos aprender isso.</p>
+        <p>E foi dessas perguntas que começou a nascer aquilo que hoje chamamos de Vida Robusta.</p>
+        <p class="short-line">Não nasceu como um curso.</p>
+        <p class="short-line">Não nasceu como uma empresa.</p>
+        <p>Também não nasceu porque eu tivesse todas as respostas.</p>
+        <p>Nasceu justamente porque comecei a fazer perguntas que eu já não conseguia ignorar.</p>
+        <p class="short-line">O que significa prosperar de verdade?</p>
+        <p>De que adianta construir patrimônio se perdemos aquilo que deveria dar sentido ao patrimônio?</p>
+        <p>Como cuidar da família sem abandonar a responsabilidade de construir o futuro?</p>
+        <p>Como perseguir objetivos sem transformar a própria saúde no preço da conquista?</p>
+        <p>Como desenvolver uma mente forte sem endurecer o coração?</p>
+        <p>Como cultivar a fé sem deixar de assumir responsabilidade pelas decisões que estão em nossas mãos?</p>
+        <p>E talvez a pergunta que reúna todas as outras seja a mesma que surgiu diante daquela árvore:</p>
+        <p class="short-line">O que realmente sustenta uma vida?</p>
+        <p class="short-line">Ainda não tenho uma resposta pronta.</p>
+        <p class="short-line">Talvez nunca tenha.</p>
+        <p>E, curiosamente, já não acho que isso seja um problema.</p>
+        <p>A Vida Robusta não nasceu para ser um lugar onde alguém sobe em um palco e explica a vida para os outros.</p>
+        <p class="short-line">Nasceu para ser uma mesa.</p>
+        <p>Um lugar onde podemos conversar com honestidade sobre patrimônio, mentalidade, família, saúde, fé, erros, decisões, dúvidas, aprendizados e estações.</p>
+        <p class="short-line">Sem precisar fingir que já chegamos.</p>
+        <p>Talvez você esteja vivendo uma excelente fase.</p>
+        <p>Talvez esteja tentando reorganizar alguma área.</p>
+        <p>Talvez exista alguma raiz pedindo atenção há muito tempo.</p>
+        <p>Ou talvez você ainda nem saiba exatamente por que chegou até esta conversa.</p>
+        <p class="short-line">Tudo bem.</p>
+        <p>Não precisamos resolver a vida inteira hoje.</p>
+        <p>Uma árvore centenária também não começou centenária.</p>
+        <p class="short-line">Ela começou pequena.</p>
+        <p class="short-line">E continuou.</p>
+        <p>Talvez seja suficiente começarmos da mesma forma.</p>
+        <p class="short-line">Observando.</p>
+        <p class="short-line">Aprendendo.</p>
+        <p class="short-line">Corrigindo.</p>
+        <p class="short-line">Fortalecendo uma raiz de cada vez.</p>
+        <p>O mundo já tem lugares suficientes para mostrar folhas.</p>
+        <p>Talvez esteja faltando um lugar para conversar sobre aquilo que ninguém vê, mas sustenta tudo.</p>
+        <p class="short-line">Foi para isso que nasceu a Vida Robusta.</p>
+        <p>E esta é apenas a nossa primeira conversa.</p>
+    </div>
+    <section class="question" aria-labelledby="pergunta-titulo">
+      <p class="eyebrow" id="pergunta-titulo">A pergunta que fica</p>
+      <p class="question-text">Se você pudesse olhar para a sua vida como quem observa uma árvore, qual raiz pediria mais atenção nesta estação?</p>
+    </section>
+    <nav class="article-nav" aria-label="Navegação entre conversas">
+      <a href="../../index.html#conversa">← Voltar para Conversas</a>
+      <span class="next-disabled" aria-label="Ainda não há próxima conversa">Próxima conversa →</span>
+    </nav>
+  </article>
+</main>
+<footer>
+  <div class="container">
+    <p class="footer-phrase">A Vida Robusta não nasceu para oferecer respostas prontas. Nasceu para iniciar conversas que permanecem.</p>
+    <div class="footer-links">
+      <a href="mailto:contato@vidarobusta.com.br">contato@vidarobusta.com.br</a>
+      <a href="https://instagram.com/souigoraraujo" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@souigoraraujo" target="_blank" rel="noopener">YouTube</a>
+      <a href="../../privacidade.html">Política de Privacidade</a>
+      <a href="../../termos.html">Termos de Uso</a>
+    </div>
+    <div class="footer-brand">© 2026 Vida Robusta. Todos os direitos reservados.</div>
+  </div>
+</footer>
+</body>
+</html>
