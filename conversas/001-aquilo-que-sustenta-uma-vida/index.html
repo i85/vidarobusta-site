@@ -45,12 +45,12 @@
   .divider{display:flex;align-items:center;gap:17px}
   .divider:before,.divider:after{content:"";height:1px;background:var(--linha);flex:1}
   .divider span{width:7px;height:7px;border:1px solid var(--dourado);transform:rotate(45deg)}
-  .article-body{padding:66px 0 105px}
+  .article-body{padding:66px 0 26px}
   .article-body p{font-family:'Cormorant Garamond',serif;color:#463c33;font-size:clamp(21px,2.4vw,24px);line-height:1.75;margin:0 0 1.45em}
   .article-body .opening:first-letter{float:left;color:var(--verde-escuro);font-size:4.2em;font-weight:500;line-height:.74;margin:.12em .1em 0 0}
   .article-body .short-line{color:var(--verde-escuro);font-weight:500;margin-top:-.35em;margin-bottom:1.05em}
-  .question{border-top:1px solid var(--linha);padding:76px 0 80px;text-align:center}
-  .question .eyebrow{margin-bottom:20px}
+  .question{border-top:1px solid var(--linha);padding:34px 0 64px;text-align:center}
+  .question .eyebrow{margin-bottom:18px}
   .question-text{font-family:'Cormorant Garamond',serif;color:var(--verde-escuro);font-size:clamp(29px,5vw,41px);font-weight:600;line-height:1.3;margin:0 auto;max-width:700px;text-wrap:balance}
   .article-nav{display:flex;justify-content:space-between;gap:28px;padding:29px 0;border-top:1px solid var(--linha);font-size:13px;font-weight:600;color:var(--verde-escuro)}
   .article-nav a{text-decoration:none}
@@ -65,7 +65,7 @@
   :focus-visible{outline:2px solid var(--dourado);outline-offset:4px}
   @media(max-width:680px){
     .nav{display:none}.brand-mini img{width:176px}.article-header{padding:74px 0 48px}
-    .article-body{padding:52px 0 78px}.question{padding:60px 0 64px}
+    .article-body{padding:52px 0 22px}.question{padding:30px 0 54px}
     .article-nav{font-size:12px;align-items:flex-start}.next-disabled{text-align:right}
   }
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -295,7 +295,7 @@
         <p>E esta é apenas a nossa primeira conversa.</p>
     </div>
     <section class="question" aria-labelledby="pergunta-titulo">
-      <p class="eyebrow" id="pergunta-titulo">A pergunta que fica</p>
+      <p class="eyebrow" id="pergunta-titulo">Conversa nº 001 · A pergunta que fica</p>
       <p class="question-text">Se você pudesse olhar para a sua vida como quem observa uma árvore, qual raiz pediria mais atenção nesta estação?</p>
     </section>
     <nav class="article-nav" aria-label="Navegação entre conversas">
