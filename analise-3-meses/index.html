@@ -15,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --verde:#1F4D3A; --verde-escuro:#163B2C; --marrom:#5C4632; --areia:#D8C8B2;
@@ -30,27 +30,37 @@
   .wrap{max-width:600px; margin:0 auto; padding:0 24px;}
 
   /* topo — só a logo, sem navegação */
-  .top{text-align:center; padding:36px 24px 0;}
-  .top img{width:52px; height:auto;}
+  .top{text-align:center; padding:32px 24px 0;}
+  .top img{width:48px; height:auto;}
 
-  .hero{text-align:center; padding:24px 0 8px;}
+  .hero{text-align:center; padding:20px 0 6px;}
   .eyebrow{
     font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.18em;
-    text-transform:uppercase; color:var(--dourado); margin-bottom:14px;
+    text-transform:uppercase; color:var(--dourado); margin-bottom:12px;
   }
   h1{
     font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--verde);
-    font-size:clamp(30px,6vw,42px); line-height:1.12; margin:0 0 16px;
+    font-size:clamp(28px,6vw,40px); line-height:1.12; margin:0 0 14px;
   }
   h1 em{font-style:italic; font-weight:500; color:var(--dourado);}
-  .sub{font-size:15.5px; color:var(--marrom); max-width:46ch; margin:0 auto;}
+  .sub{font-size:15px; color:var(--marrom); max-width:46ch; margin:0 auto;}
 
-  .divider{width:36px; height:1px; background:var(--dourado); margin:32px auto;}
-
-  .card{
-    background:#fff; border:1px solid rgba(92,70,50,0.15); border-radius:6px; padding:28px 26px; margin-bottom:20px;
+  h2.section-title{
+    font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--verde);
+    font-size:22px; text-align:center; margin:0 0 16px;
   }
 
+  .divider{width:32px; height:1px; background:var(--dourado); margin:28px auto;}
+
+  /* ---- agitação do problema ---- */
+  .problema{padding:6px 0 8px;}
+  .problema p{font-size:14.5px; margin:0 0 12px;}
+  .problema strong{color:var(--verde);}
+
+  /* ---- cartão de benefícios ---- */
+  .card{
+    background:#fff; border:1px solid rgba(92,70,50,0.15); border-radius:6px; padding:26px 24px; margin-bottom:8px;
+  }
   .beneficios{list-style:none; margin:0; padding:0;}
   .beneficios li{
     display:flex; gap:12px; padding:12px 0; border-top:1px dashed rgba(92,70,50,0.18); font-size:14.5px;
@@ -62,12 +72,26 @@
   }
   .beneficios .check svg{width:10px; height:10px; stroke:var(--verde); stroke-width:3; fill:none;}
 
-  .price-block{text-align:center; padding:8px 0 4px;}
+  /* ---- credibilidade ---- */
+  .credibilidade{
+    display:flex; align-items:center; gap:14px; padding:18px 20px; margin:24px 0;
+    background:rgba(31,77,58,0.05); border-radius:6px;
+  }
+  .credibilidade .selo{
+    flex:0 0 44px; width:44px; height:44px; border-radius:50%; background:var(--verde);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .credibilidade .selo svg{width:22px; height:22px; stroke:var(--off); fill:none; stroke-width:1.6;}
+  .credibilidade .texto{font-size:13px; line-height:1.5;}
+  .credibilidade .texto strong{color:var(--verde); font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; display:block;}
+
+  /* ---- preço ---- */
+  .price-block{text-align:center; padding:16px 0 4px;}
   .price-old{
     font-family:'Inter',sans-serif; font-size:16px; color:var(--marrom); opacity:0.55;
     text-decoration:line-through; margin-bottom:2px;
   }
-  .price-new{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:52px; color:var(--verde); line-height:1;}
+  .price-new{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:50px; color:var(--verde); line-height:1;}
   .price-new span{font-size:22px; font-weight:500; color:var(--marrom);}
   .price-tag{
     display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600;
@@ -75,54 +99,66 @@
     padding:5px 12px; border-radius:20px;
   }
 
+  /* ---- order bump ---- */
   .bump{
-    border:1.5px dashed var(--dourado); border-radius:6px; padding:20px 22px; margin:22px 0;
+    display:block; border:1.5px dashed var(--dourado); border-radius:6px; padding:20px 22px; margin:22px 0;
     background:rgba(176,141,87,0.06); cursor:pointer;
   }
   .bump-top{display:flex; gap:14px; align-items:flex-start;}
   .bump input[type=checkbox]{
     margin-top:3px; width:19px; height:19px; flex:0 0 19px; accent-color:var(--verde); cursor:pointer;
   }
+  .bump-text{flex:1 1 auto; min-width:0;}
   .bump-title{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:19px; color:var(--verde); margin-bottom:4px;}
   .bump-desc{font-size:13.5px; color:var(--marrom); line-height:1.55;}
   .bump-price{margin-top:8px; font-size:13.5px;}
   .bump-price .old{text-decoration:line-through; opacity:0.55; margin-right:8px;}
   .bump-price .new{font-weight:700; color:var(--verde); font-size:15px;}
   .bump-terms{
-    margin-top:14px; padding-top:14px; border-top:1px dashed rgba(92,70,50,0.2);
+    display:block; margin-top:14px; padding-top:14px; border-top:1px dashed rgba(92,70,50,0.2);
     font-size:11.5px; color:var(--marrom); opacity:0.8; line-height:1.6;
   }
 
   .total-row{
-    display:flex; justify-content:space-between; align-items:center; padding:16px 4px 4px;
+    display:flex; justify-content:space-between; align-items:center; padding:14px 4px 4px;
     font-family:'Inter',sans-serif;
   }
   .total-label{font-size:13px; color:var(--marrom);}
-  .total-value{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:28px; color:var(--verde);}
+  .total-value{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:26px; color:var(--verde);}
 
   .cta-btn{
     display:block; width:100%; appearance:none; border:none; cursor:pointer; text-decoration:none; text-align:center;
     background:var(--verde); color:var(--off); font-family:'Inter',sans-serif; font-size:15px; font-weight:600;
-    padding:17px 22px; border-radius:6px; margin-top:18px; transition:background .15s ease;
+    padding:17px 22px; border-radius:6px; margin-top:16px; transition:background .15s ease;
   }
   .cta-btn:hover{background:var(--verde-escuro);}
   .fine{
     text-align:center; font-size:11.5px; color:var(--marrom); opacity:0.65; margin-top:10px;
   }
 
+  /* ---- FAQ ---- */
+  .faq{padding:8px 0 4px;}
+  .faq-item{border-top:1px dashed rgba(92,70,50,0.2); padding:16px 0;}
+  .faq-item:last-child{border-bottom:1px dashed rgba(92,70,50,0.2);}
+  .faq-q{
+    font-family:'Cormorant Garamond',serif; font-weight:600; font-size:16.5px; color:var(--verde); margin:0 0 6px;
+  }
+  .faq-a{font-size:13.5px; margin:0; color:var(--marrom);}
+
   .garantia{
-    text-align:center; padding:24px 20px; margin:8px 0 32px;
+    text-align:center; padding:20px 20px; margin:8px 0 8px;
   }
   .garantia p{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; color:var(--verde); margin:0;}
 
   footer{
-    text-align:center; padding:28px 24px 48px; border-top:1px solid rgba(92,70,50,0.15);
-    font-size:11px; color:var(--marrom); opacity:0.65;
+    text-align:center; padding:20px 24px 36px; margin-top:16px; border-top:1px solid rgba(92,70,50,0.15);
+    font-size:10.5px; color:var(--marrom); opacity:0.55;
   }
   footer a{color:var(--marrom);}
 
   @media (max-width:420px){
-    .price-new{font-size:44px;}
+    .price-new{font-size:42px;}
+    .credibilidade{flex-direction:column; text-align:center;}
   }
 </style>
 </head>
@@ -137,10 +173,15 @@
   <div class="hero">
     <div class="eyebrow">Depois do Diagnóstico Express</div>
     <h1>Seus últimos 3 meses <em>fechados</em>, de verdade.</h1>
-    <p class="sub">O Diagnóstico Express foi uma fotografia geral, baseada em estimativa. Agora é hora de olhar pra trás com dados reais — extrato, gasto de verdade, dívida de verdade — e confirmar (ou corrigir) o que apareceu ali.</p>
+    <p class="sub">O Diagnóstico Express foi uma fotografia geral, baseada em estimativa. Agora é hora de olhar pra trás com dados reais — e confirmar (ou corrigir) o que apareceu ali.</p>
   </div>
 
   <div class="divider"></div>
+
+  <div class="problema">
+    <p>Estimativa dá uma direção. <strong>Mas só o extrato de verdade mostra onde o dinheiro realmente vazou</strong> — aquele gasto que parecia pequeno e virou padrão, aquela dívida que cresceu sem você perceber, aquele mês que pareceu bom mas na conta fechada não foi.</p>
+    <p>É a diferença entre achar que está no controle e <strong>saber</strong> que está.</p>
+  </div>
 
   <div class="card">
     <ul class="beneficios">
@@ -149,6 +190,14 @@
       <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Identificação de padrões que só aparecem olhando mais de um mês junto</span></li>
       <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Prioridades ajustadas com base em dados reais, não estimativa</span></li>
     </ul>
+  </div>
+
+  <div class="credibilidade">
+    <div class="selo"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <div class="texto">
+      <strong>Igor Araújo</strong>
+      Especialista em Investimentos (CEA, CPA-20, ANCORD). A Análise é conduzida com o mesmo rigor de quem lida com planejamento financeiro todos os dias — sem recomendação de produto, só clareza sobre o seu próprio dinheiro.
+    </div>
   </div>
 
   <div class="price-block">
@@ -160,7 +209,7 @@
   <label class="bump" id="bumpLabel">
     <div class="bump-top">
       <input type="checkbox" id="bumpCheck">
-      <div>
+      <div class="bump-text">
         <div class="bump-title">Quero levar também: Consultoria 1h Online</div>
         <div class="bump-desc">Uma hora comigo, ao vivo, pra destrinchar sua Análise de 3 Meses e montar um plano de ação junto com você.</div>
         <div class="bump-price"><span class="old">De R$ 297,00</span><span class="new">Por + R$ 147,00</span></div>
@@ -179,15 +228,42 @@
   <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
   <p class="fine">Pagamento via Pix, confirmado diretamente com a gente pelo WhatsApp.</p>
 
+  <div class="divider"></div>
+
+  <h2 class="section-title">Perguntas antes de decidir</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <p class="faq-q">Preciso ter feito o Diagnóstico Express antes?</p>
+      <p class="faq-a">Ajuda bastante, porque a Análise parte do que apareceu lá — mas não é obrigatório. Se você ainda não fez, pode preencher o Express antes, é grátis e leva 2 minutos.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">E se eu não tiver os extratos organizados?</p>
+      <p class="faq-a">Não precisa de planilha nem organização prévia. Você só precisa conseguir consultar o extrato dos últimos 3 meses no app do seu banco — a gente te guia sobre o que olhar.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Quanto tempo leva pra preencher?</p>
+      <p class="faq-a">Entre 15 e 25 minutos, dependendo de quantas contas e cartões você usa. Dá pra fazer aos poucos, seu progresso não se perde.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Como funciona o pagamento?</p>
+      <p class="faq-a">Você clica no botão abaixo, confirma o pedido com a gente pelo WhatsApp, e paga via Pix. O acesso à Análise é liberado assim que o pagamento é confirmado.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <div class="garantia">
     <p>Feito pra quem já sabe que precisa de clareza, não só de mais um número solto.</p>
   </div>
 
+  <a class="cta-btn" id="ctaBtn2" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
+  <p class="fine">Pagamento via Pix, confirmado diretamente com a gente pelo WhatsApp.</p>
+
 </div>
 
 <footer>
-  © 2026 Vida Robusta. Todos os direitos reservados.<br>
-  <a href="../privacidade.html">Política de Privacidade</a> · <a href="../termos.html">Termos de Uso</a>
+  © 2026 Vida Robusta. Todos os direitos reservados. ·
+  <a href="../privacidade.html">Privacidade</a> · <a href="../termos.html">Termos</a>
 </footer>
 
 <script>
@@ -196,6 +272,7 @@ const bumpCheck = document.getElementById('bumpCheck');
 const bumpLabel = document.getElementById('bumpLabel');
 const totalValue = document.getElementById('totalValue');
 const ctaBtn = document.getElementById('ctaBtn');
+const ctaBtn2 = document.getElementById('ctaBtn2');
 
 function formatBRL(v){
   return v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -211,7 +288,9 @@ function update(){
   const msg = comBump
     ? `Olá! Quero a Análise de 3 Meses (R$ 67,00) + a Consultoria 1h Online (R$ 147,00). Total: R$ ${formatBRL(total)}.`
     : `Olá! Quero a Análise de 3 Meses (R$ 67,00).`;
-  ctaBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  const href = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  ctaBtn.href = href;
+  ctaBtn2.href = href;
 }
 
 bumpCheck.addEventListener('change', update);
