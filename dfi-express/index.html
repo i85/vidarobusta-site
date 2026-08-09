@@ -575,7 +575,7 @@
       <div class="q-eyebrow">Próximo passo (sem pressão)</div>
       <h3>Análise dos seus últimos 3 meses</h3>
       <p style="text-align:justify;">Esse diagnóstico express é uma fotografia geral, baseada em estimativa. O próximo passo é a Análise dos seus últimos 3 meses fechados: com extrato, gasto real e dívida real, ela confirma ou corrige o que apareceu aqui. Depois dela, o passo seguinte é o 💰 Orçamento Financeiro, para manter esse controle no dia a dia. Por enquanto, o que está disponível é a Análise de 3 Meses.</p>
-      <a class="cta-btn" id="pitchCtaBtn" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
+      <a class="cta-btn" id="pitchCtaBtn" href="https://vidarobusta.com.br/analise-3-meses/">Quero minha Análise de 3 Meses</a>
     </div>
 
     <div class="no-print" style="display:flex; gap:10px; margin-top:16px;">
@@ -957,10 +957,6 @@ function renderReport(data){
   html += infoRows.map(([label,val])=>`<div class="info-row"><span class="i-label">${label}</span><span class="i-val">${val}</span></div>`).join('');
 
   document.getElementById('reportBody').innerHTML = html;
-
-  const waNumber = '5547996055443';
-  const waMsg = `Olá! Fiz o Diagnóstico Financeiro Express (nota ${formatNum(totalRounded)}/10, maior ponto de atenção: ${diag.title.replace('Seu maior travamento hoje é ', '')}) e quero avançar para a Análise dos Últimos 3 Meses.`;
-  document.getElementById('pitchCtaBtn').href = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`;
 
   sendLeadToSheet({
     nome, whatsapp, email, idade,
