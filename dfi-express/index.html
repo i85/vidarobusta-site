@@ -44,10 +44,12 @@
   }
   .wrap{
     position:relative; z-index:1;
-    max-width:640px;
+    max-width:1080px;
     margin:0 auto;
     padding:32px 20px 80px;
   }
+  #screen-form,#screen-report{max-width:640px;margin-left:auto;margin-right:auto;}
+  .wrap>.eyebrow,.wrap>h1.masthead,.wrap>.sub{max-width:640px;margin-left:auto;margin-right:auto;}
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;
     font-size:11px;
@@ -116,6 +118,35 @@
   }
   .cta-btn.ghost:hover{background:var(--ink); color:var(--paper);}
   .fine{font-size:11.5px; color:var(--muted); text-align:center; margin-top:12px; font-family:'IBM Plex Mono',monospace;}
+
+  /* ---- Landing page ---- */
+  .landing-hero{display:grid;grid-template-columns:1.16fr .84fr;gap:42px;align-items:center;padding:18px 0 42px;}
+  .landing-hero h2{font-family:'Fraunces',serif;font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.025em;margin:0 0 20px;max-width:13ch;}
+  .landing-hero h2 em{font-weight:500;color:var(--slate);}
+  .landing-lead{font-size:17px;line-height:1.7;color:var(--slate);max-width:58ch;margin:0 0 24px;}
+  .landing-hero .cta-btn,.final-cta .cta-btn{width:auto;display:inline-flex;padding-left:28px;padding-right:28px;margin-top:0;}
+  .hero-proof{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+  .hero-proof span::before{content:'✓';color:var(--green);margin-right:6px;font-weight:600;}
+  .preview-ticket{background:var(--card);border:1px solid var(--line);padding:25px 24px;box-shadow:10px 10px 0 rgba(198,187,152,.32);}
+  .preview-ticket::before{content:'PRÉVIA DO SEU RESULTADO';font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--muted);}
+  .preview-score{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px dashed var(--line-soft);padding:18px 0 15px;margin-bottom:14px;}
+  .preview-score strong{font-family:'Fraunces',serif;font-size:48px;line-height:1;}
+  .preview-score span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);background:var(--amber-soft);padding:5px 9px;border-radius:20px;}
+  .preview-line{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed var(--line-soft);font-size:12.5px;}
+  .preview-line:last-child{border-bottom:0}.preview-line b{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;}
+  .trust-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:rgba(251,248,239,.55);margin:8px 0 62px;}
+  .trust-item{padding:18px 16px;border-right:1px solid var(--line)}.trust-item:last-child{border-right:0}
+  .trust-item b{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.trust-item span{font-size:12.5px;color:var(--slate);line-height:1.45}
+  .landing-section{padding:58px 0;border-top:1px solid var(--line)}
+  .landing-section-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;margin-bottom:30px;align-items:start}
+  .landing-section h3{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,45px);line-height:1.08;margin:0;color:var(--ink)}
+  .landing-section-head>p{font-size:15px;line-height:1.75;color:var(--slate);margin:0}
+  .outcomes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.outcome{background:var(--card);border:1px solid var(--line);padding:24px;min-height:182px}
+  .outcome .n,.route-step .n{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.12em;margin-bottom:24px}
+  .outcome h4,.route-step h4{font-family:'Fraunces',serif;font-size:23px;line-height:1.2;margin:0 0 10px}.outcome p,.route-step p{font-size:13.5px;line-height:1.65;color:var(--slate);margin:0}
+  .route{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--card)}.route-step{padding:25px 22px;border-right:1px dashed var(--line)}.route-step:last-child{border-right:0}.route-step .n{color:var(--green);margin-bottom:14px}
+  .method-note{margin-top:18px;padding:18px 20px;border-left:3px solid var(--green);background:rgba(222,230,218,.5);font-size:13px;line-height:1.65;color:var(--slate)}
+  .final-cta{text-align:center;padding:70px 24px 28px;border-top:1px solid var(--line)}.final-cta h3{max-width:720px;margin:0 auto 15px}.final-cta p{font-size:15px;line-height:1.65;color:var(--slate);max-width:620px;margin:0 auto 22px}.privacy-note{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:13px}
 
   /* ---- Form ---- */
   .progress-row{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
@@ -281,6 +312,12 @@
     .gauge-score{font-size:46px;}
   }
 
+  @media (max-width:760px){
+    .landing-hero,.landing-section-head{grid-template-columns:1fr;gap:28px}.landing-hero{padding-top:8px}.landing-hero h2{max-width:none}
+    .trust-bar{grid-template-columns:1fr 1fr}.trust-item:nth-child(2){border-right:0}.trust-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .outcomes{grid-template-columns:1fr}.route{grid-template-columns:1fr}.route-step{border-right:0;border-bottom:1px dashed var(--line)}.route-step:last-child{border-bottom:0}
+  }
+
   @media print{
     body::before{display:none;}
     body{background:#fff;}
@@ -294,22 +331,69 @@
 <body>
 <div class="wrap">
 
-  <div class="eyebrow"><span class="dot"></span>Diagnóstico Financeiro · Versão Express</div>
+  <div class="eyebrow"><span class="dot"></span>Diagnóstico Financeiro Express · Gratuito</div>
   <h1 class="masthead">Onde seu dinheiro <em>realmente</em> está.</h1>
-  <p class="sub">Perguntas objetivas, em poucos minutos, para um retrato direto da sua saúde financeira hoje. Sem enrolação, sem termo técnico e sem venda de produto de investimento.</p>
+  <p class="sub">Entenda sua situação atual, o futuro que seu ritmo financeiro está construindo e qual ajuste pode aproximar você da renda que deseja.</p>
 
   <!-- INTRO -->
-  <section id="screen-intro" class="card intro-card">
-    <div class="q-eyebrow">Como funciona</div>
-    <p style="margin:0; font-size:14.5px; line-height:1.6; color:var(--ink); text-align:justify;">Você responde algumas perguntas objetivas sobre orçamento, dívida, reserva e hábito de investir. No fim, calculamos sua nota de saúde financeira, mostramos onde está o maior travamento e o que fazer sobre isso nos próximos 30 dias.</p>
-    <ul class="intro-list">
-      <li><span class="n">01</span> Leva cerca de 2 minutos</li>
-      <li><span class="n">02</span> Nota de 0 a 10 com metodologia aberta</li>
-      <li><span class="n">03</span> Prioridades práticas, sem jargão</li>
-      <li><span class="n">04</span> Nada de recomendação de onde investir: isso não é consultoria de investimentos</li>
-    </ul>
-    <button class="cta-btn" onclick="goTo('form')">Começar diagnóstico →</button>
-    <div class="fine">gratuito nesta versão · leva 2 minutos</div>
+  <section id="screen-intro">
+    <div class="landing-hero">
+      <div>
+        <div class="q-eyebrow">Clareza antes da pressa</div>
+        <h2>Descubra a rota entre sua vida financeira de hoje e a renda que você deseja.</h2>
+        <p class="landing-lead">Não basta saber quanto você ganha ou quanto já investiu. Você precisa entender se sua reserva protege sua caminhada, quanto seu patrimônio pode se tornar e se o ritmo atual é suficiente para alcançar sua meta no prazo desejado.</p>
+        <button class="cta-btn" onclick="goTo('form')">Fazer meu diagnóstico gratuito →</button>
+        <div class="hero-proof"><span>Resultado imediato</span><span>Metodologia explicada</span><span>Sem indicação de produto</span></div>
+      </div>
+      <div class="preview-ticket" aria-label="Exemplo ilustrativo do resultado do diagnóstico">
+        <div class="preview-score"><strong>—<small>/10</small></strong><span>SEU DIAGNÓSTICO</span></div>
+        <div class="preview-line"><span>Reserva de emergência</span><b>MESES DE PROTEÇÃO</b></div>
+        <div class="preview-line"><span>Patrimônio necessário</span><b>SUA META</b></div>
+        <div class="preview-line"><span>Ritmo atual</span><b>PRAZO PROJETADO</b></div>
+        <div class="preview-line"><span>Próximo passo</span><b>CORREÇÃO DE ROTA</b></div>
+      </div>
+    </div>
+
+    <div class="trust-bar" aria-label="Características do diagnóstico">
+      <div class="trust-item"><b>Gratuito</b><span>Acesso completo nesta versão.</span></div>
+      <div class="trust-item"><b>9 etapas</b><span>Perguntas diretas e organizadas.</span></div>
+      <div class="trust-item"><b>Resultado imediato</b><span>Relatório gerado ao finalizar.</span></div>
+      <div class="trust-item"><b>Educacional</b><span>Sem promessa de rentabilidade.</span></div>
+    </div>
+
+    <section class="landing-section">
+      <div class="landing-section-head">
+        <h3>Você não precisa de mais números soltos.</h3>
+        <p>Renda, despesas, aportes e patrimônio dizem pouco quando observados separadamente. O Diagnóstico Financeiro Express conecta esses dados para responder uma pergunta mais importante: <strong>o caminho que você está percorrendo leva ao futuro financeiro que você deseja?</strong></p>
+      </div>
+      <div class="outcomes">
+        <article class="outcome"><div class="n">01 · SITUAÇÃO ATUAL</div><h4>Sua nota de saúde financeira</h4><p>Uma leitura de orçamento, dívidas, reserva, hábito de poupança e clareza de objetivo — com os critérios mostrados no relatório.</p></article>
+        <article class="outcome"><div class="n">02 · PROTEÇÃO</div><h4>Quanto tempo sua reserva sustenta</h4><p>Veja quantos meses de despesas sua reserva atual cobre e se essa raiz precisa de atenção antes de avançar.</p></article>
+        <article class="outcome"><div class="n">03 · DESTINO</div><h4>O patrimônio estimado para sua renda desejada</h4><p>Informe a renda mensal que gostaria de alcançar e receba uma estimativa do capital necessário, considerando a hipótese de retorno escolhida.</p></article>
+        <article class="outcome"><div class="n">04 · CORREÇÃO DE ROTA</div><h4>Tempo necessário × tempo desejado</h4><p>Compare o prazo da sua meta com a projeção baseada no patrimônio e aporte atuais. Se existir distância, o relatório mostra onde a conta precisa ser revista.</p></article>
+      </div>
+    </section>
+
+    <section class="landing-section">
+      <div class="landing-section-head">
+        <h3>Da planilha à decisão.</h3>
+        <p>O DFI Express nasceu de uma planilha de projeção de liberdade financeira. A ferramenta preserva a lógica essencial, mas transforma cálculos isolados em uma leitura simples e acionável.</p>
+      </div>
+      <div class="route">
+        <article class="route-step"><div class="n">01</div><h4>Você informa</h4><p>Renda, gastos, reserva, patrimônio, aporte mensal, prazo e renda desejada.</p></article>
+        <article class="route-step"><div class="n">02</div><h4>A ferramenta conecta</h4><p>Calcula proteção da reserva, projeção patrimonial, meta de capital e ritmo provável.</p></article>
+        <article class="route-step"><div class="n">03</div><h4>Você enxerga</h4><p>Onde está o principal ponto de atenção e quais prioridades considerar nos próximos 30 dias.</p></article>
+      </div>
+      <div class="method-note"><strong>Importante:</strong> as projeções usam uma taxa real de retorno informada por você e servem como simulação educacional. Elas não representam garantia de resultado nem recomendação de investimento.</div>
+    </section>
+
+    <section class="final-cta">
+      <div class="q-eyebrow">Uma fotografia pode mudar uma decisão</div>
+      <h3>Responda até o fim e receba sua leitura financeira completa.</h3>
+      <p>Separe alguns minutos, informe valores aproximados com honestidade e deixe a ferramenta conectar o presente ao futuro que você quer construir.</p>
+      <button class="cta-btn" onclick="goTo('form')">Começar agora →</button>
+      <div class="privacy-note">Seus dados são usados para gerar o diagnóstico e para o contato autorizado no formulário.</div>
+    </section>
   </section>
 
   <!-- FORM -->
