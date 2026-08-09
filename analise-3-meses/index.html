@@ -3,299 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Análise de 3 Meses — Vida Robusta</title>
+<title>Análise Financeira de 3 Meses — Vida Robusta</title>
+<meta name="description" content="Transforme os últimos três meses em decisões melhores para os próximos doze. Identifique padrões, ajuste despesas e aumente sua capacidade de investir sem deixar de viver o caminho.">
 <link rel="icon" type="image/png" href="../assets/emblema-vida-robusta.png">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Vida Robusta">
-<meta property="og:title" content="Análise de 3 Meses — Vida Robusta">
-<meta property="og:description" content="Seus últimos 3 meses fechados de verdade: extrato, gasto real, dívida real. O passo seguinte ao Diagnóstico Financeiro Express.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Vida Robusta">
+<meta property="og:title" content="Análise Financeira de 3 Meses — Vida Robusta">
+<meta property="og:description" content="Do que aconteceu nos últimos três meses às decisões que orientarão seu próximo ano financeiro.">
 <meta property="og:image" content="https://vidarobusta.com.br/assets/logo-vida-robusta-completo.png">
 <meta property="og:url" content="https://vidarobusta.com.br/analise-3-meses/">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --verde:#1F4D3A; --verde-escuro:#163B2C; --marrom:#5C4632; --areia:#D8C8B2;
-    --off:#F8F7F2; --dourado:#B08D57; --dourado-claro:#CBA96B;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--off); color:var(--marrom); font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased; line-height:1.6;
-  }
-  .wrap{max-width:600px; margin:0 auto; padding:0 24px;}
-
-  /* topo — só a logo, sem navegação */
-  .top{text-align:center; padding:32px 24px 0;}
-  .top img{width:48px; height:auto;}
-
-  .hero{text-align:center; padding:20px 0 6px;}
-  .eyebrow{
-    font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.18em;
-    text-transform:uppercase; color:var(--dourado); margin-bottom:12px;
-  }
-  h1{
-    font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--verde);
-    font-size:clamp(28px,6vw,40px); line-height:1.12; margin:0 0 14px;
-  }
-  h1 em{font-style:italic; font-weight:500; color:var(--dourado);}
-  .sub{font-size:15px; color:var(--marrom); max-width:46ch; margin:0 auto;}
-
-  h2.section-title{
-    font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--verde);
-    font-size:22px; text-align:center; margin:0 0 16px;
-  }
-
-  .divider{width:32px; height:1px; background:var(--dourado); margin:28px auto;}
-
-  /* ---- agitação do problema ---- */
-  .problema{padding:6px 0 8px;}
-  .problema p{font-size:14.5px; margin:0 0 12px;}
-  .problema strong{color:var(--verde);}
-
-  /* ---- cartão de benefícios ---- */
-  .card{
-    background:#fff; border:1px solid rgba(92,70,50,0.15); border-radius:6px; padding:26px 24px; margin-bottom:8px;
-  }
-  .beneficios{list-style:none; margin:0; padding:0;}
-  .beneficios li{
-    display:flex; gap:12px; padding:12px 0; border-top:1px dashed rgba(92,70,50,0.18); font-size:14.5px;
-  }
-  .beneficios li:first-child{border-top:none;}
-  .beneficios .check{
-    flex:0 0 18px; width:18px; height:18px; border-radius:50%; background:rgba(31,77,58,0.1);
-    display:flex; align-items:center; justify-content:center; margin-top:1px;
-  }
-  .beneficios .check svg{width:10px; height:10px; stroke:var(--verde); stroke-width:3; fill:none;}
-
-  /* ---- credibilidade ---- */
-  .credibilidade{
-    display:flex; align-items:center; gap:14px; padding:18px 20px; margin:24px 0;
-    background:rgba(31,77,58,0.05); border-radius:6px;
-  }
-  .credibilidade .selo{
-    flex:0 0 44px; width:44px; height:44px; border-radius:50%; background:var(--verde);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .credibilidade .selo svg{width:22px; height:22px; stroke:var(--off); fill:none; stroke-width:1.6;}
-  .credibilidade .texto{font-size:13px; line-height:1.5;}
-  .credibilidade .texto strong{color:var(--verde); font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; display:block;}
-
-  /* ---- preço ---- */
-  .price-block{text-align:center; padding:16px 0 4px;}
-  .price-old{
-    font-family:'Inter',sans-serif; font-size:16px; color:var(--marrom); opacity:0.55;
-    text-decoration:line-through; margin-bottom:2px;
-  }
-  .price-new{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:50px; color:var(--verde); line-height:1;}
-  .price-new span{font-size:22px; font-weight:500; color:var(--marrom);}
-  .price-tag{
-    display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600;
-    letter-spacing:0.05em; text-transform:uppercase; background:rgba(176,141,87,0.16); color:var(--dourado);
-    padding:5px 12px; border-radius:20px;
-  }
-
-  /* ---- order bump ---- */
-  .bump{
-    display:block; border:1.5px dashed var(--dourado); border-radius:6px; padding:20px 22px; margin:22px 0;
-    background:rgba(176,141,87,0.06); cursor:pointer;
-  }
-  .bump-top{display:flex; gap:14px; align-items:flex-start;}
-  .bump input[type=checkbox]{
-    margin-top:3px; width:19px; height:19px; flex:0 0 19px; accent-color:var(--verde); cursor:pointer;
-  }
-  .bump-text{flex:1 1 auto; min-width:0;}
-  .bump-title{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:19px; color:var(--verde); margin-bottom:4px;}
-  .bump-desc{font-size:13.5px; color:var(--marrom); line-height:1.55;}
-  .bump-price{margin-top:8px; font-size:13.5px;}
-  .bump-price .old{text-decoration:line-through; opacity:0.55; margin-right:8px;}
-  .bump-price .new{font-weight:700; color:var(--verde); font-size:15px;}
-  .bump-terms{
-    display:block; margin-top:14px; padding-top:14px; border-top:1px dashed rgba(92,70,50,0.2);
-    font-size:11.5px; color:var(--marrom); opacity:0.8; line-height:1.6;
-  }
-
-  .total-row{
-    display:flex; justify-content:space-between; align-items:center; padding:14px 4px 4px;
-    font-family:'Inter',sans-serif;
-  }
-  .total-label{font-size:13px; color:var(--marrom);}
-  .total-value{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:26px; color:var(--verde);}
-
-  .cta-btn{
-    display:block; width:100%; appearance:none; border:none; cursor:pointer; text-decoration:none; text-align:center;
-    background:var(--verde); color:var(--off); font-family:'Inter',sans-serif; font-size:15px; font-weight:600;
-    padding:17px 22px; border-radius:6px; margin-top:16px; transition:background .15s ease;
-  }
-  .cta-btn:hover{background:var(--verde-escuro);}
-  .fine{
-    text-align:center; font-size:11.5px; color:var(--marrom); opacity:0.65; margin-top:10px;
-  }
-
-  /* ---- FAQ ---- */
-  .faq{padding:8px 0 4px;}
-  .faq-item{border-top:1px dashed rgba(92,70,50,0.2); padding:16px 0;}
-  .faq-item:last-child{border-bottom:1px dashed rgba(92,70,50,0.2);}
-  .faq-q{
-    font-family:'Cormorant Garamond',serif; font-weight:600; font-size:16.5px; color:var(--verde); margin:0 0 6px;
-  }
-  .faq-a{font-size:13.5px; margin:0; color:var(--marrom);}
-
-  .garantia{
-    text-align:center; padding:20px 20px; margin:8px 0 8px;
-  }
-  .garantia p{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; color:var(--verde); margin:0;}
-
-  footer{
-    text-align:center; padding:20px 24px 36px; margin-top:16px; border-top:1px solid rgba(92,70,50,0.15);
-    font-size:10.5px; color:var(--marrom); opacity:0.55;
-  }
-  footer a{color:var(--marrom);}
-
-  @media (max-width:420px){
-    .price-new{font-size:42px;}
-    .credibilidade{flex-direction:column; text-align:center;}
-  }
+:root{--verde:#1F4D3A;--verde-escuro:#163B2C;--marrom:#5C4632;--off:#F8F7F2;--dourado:#B08D57;--linha:rgba(92,70,50,.17);--branco:#fff;--suave:#F0F2EC}
+*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0;padding:0}body{background:var(--off);color:var(--marrom);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}.container{width:min(1080px,calc(100% - 40px));margin:auto}a{color:inherit}.topbar{border-bottom:1px solid var(--linha);background:rgba(248,247,242,.94);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}.topbar-inner{height:76px;display:flex;align-items:center;justify-content:space-between}.brand img{width:188px;display:block}.top-note{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dourado)}
+.hero{padding:88px 0 76px}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center}.eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--dourado);margin:0 0 17px}.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,76px);line-height:.98;letter-spacing:-.025em;font-weight:600;color:var(--verde-escuro);margin:0 0 26px}.hero h1 em{font-weight:500;color:var(--dourado)}.lead{font-size:18px;line-height:1.75;margin:0 0 27px;max-width:650px}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 25px;border-radius:4px;background:var(--verde-escuro);color:#fff;text-decoration:none;font-weight:600;font-size:14px;border:0}.cta.disabled{background:#66766d;cursor:not-allowed;opacity:.82}.cta-note{display:block;font-size:11px;color:#8b8275;margin-top:11px}.route-card{background:#fff;border:1px solid var(--linha);padding:30px;box-shadow:14px 14px 0 rgba(176,141,87,.1)}.route-card .title{font-family:'Cormorant Garamond',serif;font-size:25px;color:var(--verde-escuro);margin-bottom:20px}.route-step{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:15px 0;border-top:1px dashed var(--linha)}.route-step:first-of-type{border-top:0}.route-step b{font-family:'Cormorant Garamond',serif;color:var(--verde);font-size:20px}.route-step p{font-size:13px;line-height:1.55;margin:3px 0 0}.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--suave);color:var(--verde);font-size:11px;font-weight:600}
+.trust{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);background:#fff}.trust-grid{display:grid;grid-template-columns:repeat(4,1fr)}.trust-item{padding:22px 20px;border-right:1px solid var(--linha)}.trust-item:last-child{border-right:0}.trust-item b{display:block;color:var(--verde);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.trust-item span{font-size:12px;line-height:1.45}
+section.block{padding:82px 0}.section-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px;margin-bottom:38px}.section-head h2{font-family:'Cormorant Garamond',serif;color:var(--verde-escuro);font-size:clamp(37px,5vw,55px);line-height:1.03;margin:0;font-weight:600}.section-head p{font-size:16px;line-height:1.8;margin:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--linha);padding:27px;min-height:230px}.card .n{font-size:10px;letter-spacing:.15em;color:var(--dourado);margin-bottom:23px}.card h3{font-family:'Cormorant Garamond',serif;color:var(--verde);font-size:25px;line-height:1.15;margin:0 0 12px}.card p{font-size:13.5px;line-height:1.7;margin:0}.band{background:var(--verde-escuro);color:#f7f2e8;padding:72px 0}.band-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:75px;align-items:center}.band h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,56px);line-height:1.04;margin:0}.band p{font-size:16px;line-height:1.8;margin:0;color:#e6ded0}.rule{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.rule-item{border:1px solid rgba(255,255,255,.2);padding:19px}.rule-item b{font-family:'Cormorant Garamond',serif;color:#d8b879;font-size:29px}.rule-item span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}.rule-note{font-size:12px!important;margin-top:20px!important;color:#bdb7ac!important}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--linha);background:#fff}.phase{padding:30px;border-right:1px dashed var(--linha)}.phase:last-child{border-right:0}.phase .tag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dourado);margin-bottom:14px}.phase h3{font-family:'Cormorant Garamond',serif;color:var(--verde);font-size:25px;margin:0 0 10px}.phase p{font-size:13.5px;line-height:1.65;margin:0}.phase.active{background:#f2f4ef}
+.delivery{background:#fff;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}.delivery-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.delivery-list{list-style:none;margin:0;padding:0}.delivery-list li{padding:14px 0 14px 29px;border-top:1px dashed var(--linha);font-size:14px;line-height:1.6;position:relative}.delivery-list li:first-child{border-top:0}.delivery-list li:before{content:'✓';position:absolute;left:0;color:var(--verde);font-weight:600}.access{background:var(--suave);padding:30px;border-left:3px solid var(--verde)}.access h3{font-family:'Cormorant Garamond',serif;color:var(--verde);font-size:27px;margin:0 0 12px}.access p{font-size:13.5px;line-height:1.7;margin:0 0 12px}.optional{margin-top:18px;padding-top:17px;border-top:1px dashed var(--linha)}
+.offer{text-align:center;padding:88px 0 80px}.offer h2{font-family:'Cormorant Garamond',serif;color:var(--verde-escuro);font-size:clamp(38px,5vw,58px);max-width:780px;line-height:1.05;margin:0 auto 18px}.offer>div>p{max-width:680px;margin:0 auto 26px;font-size:15px;line-height:1.75}.soon{display:inline-block;padding:7px 13px;border-radius:20px;background:rgba(176,141,87,.15);color:var(--dourado);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}.faq{max-width:760px;margin:52px auto 0;text-align:left}.faq-item{padding:19px 0;border-top:1px dashed var(--linha)}.faq-q{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--verde);font-weight:600;margin:0 0 6px}.faq-a{font-size:13.5px;line-height:1.65;margin:0}.footer{border-top:1px solid var(--linha);padding:30px 0;text-align:center;font-size:11px;color:#8b8275}
+@media(max-width:780px){.top-note{display:none}.brand img{width:170px}.hero{padding:58px 0}.hero-grid,.section-head,.band-grid,.delivery-grid{grid-template-columns:1fr;gap:35px}.trust-grid{grid-template-columns:1fr 1fr}.trust-item:nth-child(2){border-right:0}.trust-item:nth-child(-n+2){border-bottom:1px solid var(--linha)}.cards,.timeline{grid-template-columns:1fr}.phase{border-right:0;border-bottom:1px dashed var(--linha)}.phase:last-child{border-bottom:0}.rule{grid-template-columns:1fr}.route-card{box-shadow:8px 8px 0 rgba(176,141,87,.1)}section.block{padding:62px 0}}
 </style>
 </head>
 <body>
+<header class="topbar"><div class="container topbar-inner"><a class="brand" href="../index.html#inicio"><img src="../assets/logo-vida-robusta-completo.png" alt="Vida Robusta"></a><span class="top-note">Ferramenta Patrimônio · Vida Robusta</span></div></header>
+<main>
+<section class="hero"><div class="container hero-grid"><div><p class="eyebrow">Depois do Diagnóstico Financeiro Express</p><h1>Transforme os últimos 3 meses em decisões melhores para os próximos <em>12.</em></h1><p class="lead">A Análise Financeira de 3 Meses revela como seu dinheiro se comportou de verdade, identifica ajustes possíveis e cria as premissas para um orçamento anual que aumente sua capacidade de investir sem abrir mão de viver o caminho.</p><span class="cta disabled" aria-disabled="true">Disponível em breve</span><span class="cta-note">O checkout ainda não está aberto.</span></div><aside class="route-card"><div class="title">Uma sequência, não uma ferramenta isolada.</div><div class="route-step"><span class="num">01</span><div><b>DFI Express</b><p>Mostra onde você está e qual raiz financeira pede atenção.</p></div></div><div class="route-step"><span class="num">02</span><div><b>Análise de 3 Meses</b><p>Confirma os padrões com dados reais e identifica a correção de rota.</p></div></div><div class="route-step"><span class="num">03</span><div><b>Orçamento de 12 Meses</b><p>Transforma os achados em um plano previsto para o próximo ciclo.</p></div></div></aside></div></section>
+<div class="trust"><div class="container trust-grid"><div class="trust-item"><b>Dados reais</b><span>Três meses fechados, não apenas estimativas.</span></div><div class="trust-item"><b>Visão completa</b><span>Receitas, despesas, investimentos e saldos.</span></div><div class="trust-item"><b>Referência 50/30/20</b><span>Uma régua ajustável, não uma regra rígida.</span></div><div class="trust-item"><b>Próximo ciclo</b><span>Premissas para planejar os próximos 12 meses.</span></div></div></div>
 
-<div class="top">
-  <img src="../assets/emblema-vida-robusta.png" alt="Vida Robusta">
-</div>
+<section class="block"><div class="container"><div class="section-head"><h2>O problema não é viver. É gastar sem perceber o que a escolha está custando.</h2><p>Pequenas despesas podem virar padrões. Gastos importantes podem ser confundidos com excessos. E cortar tudo pode produzir um orçamento que funciona no papel, mas não se sustenta na vida real. A análise separa o que é essencial, o que faz parte do seu estilo de vida e o que está construindo seu futuro.</p></div><div class="cards"><article class="card"><div class="n">01 · REALIDADE</div><h3>Três meses lado a lado</h3><p>Compare receitas, despesas, investimentos e saldo de cada mês para reconhecer recorrências e exceções.</p></article><article class="card"><div class="n">02 · DISTRIBUIÇÃO</div><h3>Seu 50/30/20 real</h3><p>Veja quanto da renda foi para necessidades, estilo de vida e construção de patrimônio.</p></article><article class="card"><div class="n">03 · DECISÃO</div><h3>Onde ajustar primeiro</h3><p>Identifique despesas que podem ser reduzidas ou reorganizadas para liberar capacidade de investimento.</p></article><article class="card"><div class="n">04 · RITMO</div><h3>Sua taxa de poupança</h3><p>Descubra qual percentual da renda foi efetivamente direcionado aos investimentos no período.</p></article><article class="card"><div class="n">05 · PROJEÇÃO</div><h3>O efeito do aporte real</h3><p>Projete o patrimônio com base no aporte médio observado, não apenas no valor que você imaginava investir.</p></article><article class="card"><div class="n">06 · CONTINUIDADE</div><h3>Premissas para 12 meses</h3><p>Leve os aprendizados para a construção do Orçamento Financeiro previsto do próximo ano.</p></article></div></div></section>
 
-<div class="wrap">
+<section class="band"><div class="container band-grid"><div><p class="eyebrow">Uma referência, não uma prisão</p><h2>A regra 50/30/20 ajuda a enxergar. A sua vida ajuda a decidir.</h2></div><div><p>A ferramenta usa a distribuição como ponto de partida para a conversa. O objetivo não é encaixar todas as famílias à força nos mesmos percentuais. É perceber onde existe espaço de ajuste e aumentar gradualmente a parcela destinada ao futuro.</p><div class="rule"><div class="rule-item"><b>50%</b><span>Necessidades</span></div><div class="rule-item"><b>30%</b><span>Estilo de vida</span></div><div class="rule-item"><b>20%</b><span>Investimentos</span></div></div><p class="rule-note">Os percentuais são referências educativas e podem exigir adaptação conforme renda, fase da vida, família e prioridades.</p></div></div></section>
 
-  <div class="hero">
-    <div class="eyebrow">Depois do Diagnóstico Express</div>
-    <h1>Seus últimos 3 meses <em>fechados</em>, de verdade.</h1>
-    <p class="sub">O Diagnóstico Express foi uma fotografia geral, baseada em estimativa. Agora é hora de olhar pra trás com dados reais — e confirmar (ou corrigir) o que apareceu ali.</p>
-  </div>
+<section class="block"><div class="container"><div class="section-head"><h2>O passado vira base. O próximo ano ganha direção.</h2><p>A Análise de 3 Meses ocupa o centro do processo: ela confirma ou corrige o DFI e fornece dados mais confiáveis para planejar o próximo ciclo financeiro.</p></div><div class="timeline"><article class="phase"><span class="tag">Antes</span><h3>DFI Express</h3><p>Uma fotografia inicial baseada nas informações e estimativas que você fornece.</p></article><article class="phase active"><span class="tag">Agora</span><h3>Análise de 3 Meses</h3><p>Leitura dos dados reais, enquadramento das categorias e identificação dos principais ajustes.</p></article><article class="phase"><span class="tag">Depois</span><h3>Orçamento de 12 Meses</h3><p>Construção de receitas e despesas previstas, metas de investimento e acompanhamento do realizado.</p></article></div></div></section>
 
-  <div class="divider"></div>
+<section class="block delivery"><div class="container delivery-grid"><div><p class="eyebrow">O que você recebe</p><h2 class="section-title" style="text-align:left;font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1.05;color:var(--verde-escuro);margin:0 0 20px">Uma análise para orientar escolhas, não para punir sua vida.</h2><ul class="delivery-list"><li>Comparativo dos três meses fechados.</li><li>Classificação e revisão das categorias.</li><li>Leitura real × referência 50/30/20.</li><li>Indicadores de saldo e taxa de poupança.</li><li>Projeção baseada no aporte médio observado.</li><li>Pontos prioritários para a correção de rota.</li><li>Relatório consolidado para apoiar o próximo planejamento.</li></ul></div><aside class="access"><h3>Como será o acesso</h3><p>Quando o checkout estiver disponível, a ferramenta será enviada por e-mail após a confirmação do pagamento.</p><p>Você poderá preencher no seu ritmo. O progresso é preservado no dispositivo e poderá ser exportado como backup.</p><div class="optional"><h3>Análise individual de 1 hora</h3><p>No checkout, poderá ser adicionada uma conversa online de uma hora comigo, previamente agendada, para interpretar os resultados e organizar os próximos passos.</p><p><strong>Adicional opcional.</strong> O valor e as regras de agendamento serão informados no checkout.</p></div></aside></div></section>
 
-  <div class="problema">
-    <p>Estimativa dá uma direção. <strong>Mas só o extrato de verdade mostra onde o dinheiro realmente vazou</strong> — aquele gasto que parecia pequeno e virou padrão, aquela dívida que cresceu sem você perceber, aquele mês que pareceu bom mas na conta fechada não foi.</p>
-    <p>É a diferença entre achar que está no controle e <strong>saber</strong> que está.</p>
-  </div>
-
-  <div class="card">
-    <ul class="beneficios">
-      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Revisão dos seus últimos 3 meses fechados, mês a mês</span></li>
-      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Comparação entre o que você imaginava gastar e o que realmente gastou</span></li>
-      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Identificação de padrões que só aparecem olhando mais de um mês junto</span></li>
-      <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6"/></svg></span><span>Prioridades ajustadas com base em dados reais, não estimativa</span></li>
-    </ul>
-  </div>
-
-  <div class="credibilidade">
-    <div class="selo"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div>
-    <div class="texto">
-      <strong>Igor Araujo</strong>
-      Especialista em Investimentos (C-Pro I ANBIMA). A Análise é conduzida com o mesmo rigor de quem lida com Planejamento Financeiro todos os dias, sem recomendação de produto, só clareza sobre o seu próprio dinheiro.
-    </div>
-  </div>
-
-  <div class="price-block">
-    <div class="price-old">De R$ 97,00</div>
-    <div class="price-new">R$ 67<span>,00</span></div>
-    <div class="price-tag">R$ 30 de desconto por tempo limitado</div>
-  </div>
-
-  <label class="bump" id="bumpLabel">
-    <div class="bump-top">
-      <input type="checkbox" id="bumpCheck">
-      <div class="bump-text">
-        <div class="bump-title">Quero levar também: Consultoria 1h Online</div>
-        <div class="bump-desc">Uma hora comigo, ao vivo, pra destrinchar sua Análise de 3 Meses e montar um plano de ação junto com você.</div>
-        <div class="bump-price"><span class="old">De R$ 297,00</span><span class="new">Por + R$ 147,00</span></div>
-      </div>
-    </div>
-    <div class="bump-terms">
-      A consultoria só é liberada depois que a Análise de 3 Meses é preenchida, com horário marcado em agenda própria. Faltas no horário agendado exigem novo pagamento para remarcar.
-    </div>
-  </label>
-
-  <div class="total-row">
-    <span class="total-label">Total de hoje</span>
-    <span class="total-value" id="totalValue">R$ 67,00</span>
-  </div>
-
-  <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
-  <p class="fine">Pagamento via Pix, confirmado diretamente com a gente pelo WhatsApp.</p>
-
-  <div class="divider"></div>
-
-  <h2 class="section-title">Perguntas antes de decidir</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <p class="faq-q">Preciso ter feito o Diagnóstico Express antes?</p>
-      <p class="faq-a">Ajuda bastante, porque a Análise parte do que apareceu lá — mas não é obrigatório. Se você ainda não fez, pode preencher o Express antes, é grátis e leva 2 minutos.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">E se eu não tiver os extratos organizados?</p>
-      <p class="faq-a">Não precisa de planilha nem organização prévia. Você só precisa conseguir consultar o extrato dos últimos 3 meses no app do seu banco — a gente te guia sobre o que olhar.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">Quanto tempo leva pra preencher?</p>
-      <p class="faq-a">Entre 15 e 25 minutos, dependendo de quantas contas e cartões você usa. Dá pra fazer aos poucos, seu progresso não se perde.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">Como funciona o pagamento?</p>
-      <p class="faq-a">Você clica no botão abaixo, confirma o pedido com a gente pelo WhatsApp, e paga via Pix. O acesso à Análise é liberado assim que o pagamento é confirmado.</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="garantia">
-    <p>Feito pra quem já sabe que precisa de clareza, não só de mais um número solto.</p>
-  </div>
-
-  <a class="cta-btn" id="ctaBtn2" href="#" target="_blank" rel="noopener">Quero minha Análise de 3 Meses</a>
-  <p class="fine">Pagamento via Pix, confirmado diretamente com a gente pelo WhatsApp.</p>
-
-</div>
-
-<footer>
-  © 2026 Vida Robusta. Todos os direitos reservados. ·
-  <a href="../privacidade.html">Privacidade</a> · <a href="../termos.html">Termos</a>
-</footer>
-
-<script>
-const waNumber = '5547996055443';
-const bumpCheck = document.getElementById('bumpCheck');
-const bumpLabel = document.getElementById('bumpLabel');
-const totalValue = document.getElementById('totalValue');
-const ctaBtn = document.getElementById('ctaBtn');
-const ctaBtn2 = document.getElementById('ctaBtn2');
-
-function formatBRL(v){
-  return v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
-}
-
-function update(){
-  const comBump = bumpCheck.checked;
-  const total = comBump ? 67 + 147 : 67;
-  totalValue.textContent = `R$ ${formatBRL(total)}`;
-  bumpLabel.style.borderColor = comBump ? '#1F4D3A' : '#B08D57';
-  bumpLabel.style.background = comBump ? 'rgba(31,77,58,0.06)' : 'rgba(176,141,87,0.06)';
-
-  const msg = comBump
-    ? `Olá! Quero a Análise de 3 Meses (R$ 67,00) + a Consultoria 1h Online (R$ 147,00). Total: R$ ${formatBRL(total)}.`
-    : `Olá! Quero a Análise de 3 Meses (R$ 67,00).`;
-  const href = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-  ctaBtn.href = href;
-  ctaBtn2.href = href;
-}
-
-bumpCheck.addEventListener('change', update);
-update();
-</script>
-
+<section class="offer"><div class="container"><span class="soon">Disponível em breve</span><h2>Clareza sobre os últimos três meses. Direção para os próximos doze.</h2><p>O checkout ainda está sendo preparado. Quando estiver ativo, você poderá adquirir a análise e adicionar, se desejar, a sessão individual de uma hora.</p><span class="cta disabled" aria-disabled="true">Disponível em breve</span><div class="faq"><div class="faq-item"><p class="faq-q">Preciso ter feito o DFI Express?</p><p class="faq-a">Não é obrigatório, mas é recomendado. A análise consegue cruzar os dados reais com as metas registradas no diagnóstico.</p></div><div class="faq-item"><p class="faq-q">Preciso organizar os extratos antes?</p><p class="faq-a">Não. Você precisa ter acesso aos dados dos três meses fechados. A própria ferramenta ajuda a importar, classificar e revisar os lançamentos.</p></div><div class="faq-item"><p class="faq-q">O Orçamento Financeiro de 12 Meses está incluído?</p><p class="faq-a">Não nesta etapa. A Análise de 3 Meses produz a base e as premissas que orientarão a construção do orçamento anual.</p></div><div class="faq-item"><p class="faq-q">Como receberei a ferramenta?</p><p class="faq-a">O acesso será enviado ao e-mail informado no checkout após a confirmação do pagamento.</p></div><div class="faq-item"><p class="faq-q">A sessão individual está incluída?</p><p class="faq-a">Ela será um adicional opcional no checkout, com duração de uma hora e horário previamente agendado.</p></div></div></div></section>
+</main>
+<footer class="footer"><div class="container">© 2026 Vida Robusta · <a href="../privacidade.html">Privacidade</a> · <a href="../termos.html">Termos</a></div></footer>
 </body>
 </html>
