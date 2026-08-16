@@ -155,8 +155,8 @@
   .conversation-number{font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--dourado);margin-bottom:14px;}
   .conversation-card h3{font-family:'Cormorant Garamond',serif;font-size:38px;line-height:1.1;color:var(--verde-escuro);margin:0 0 17px;}
   .conversation-card p{font-size:15px;line-height:1.75;margin:0 0 24px;}
-  .conversation-image{height:420px;border-radius:6px;overflow:hidden;}
-  .conversation-image img{width:100%;height:100%;object-fit:cover;display:block;}
+  .conversation-image{height:auto;aspect-ratio:3/2;border-radius:6px;overflow:hidden;background:var(--verde-profundo);}
+  .conversation-image img{width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;display:block;}
   .conversation-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px 18px;}
   .conversation-previous{font-size:12px;font-weight:600;color:var(--verde);text-decoration:none;}
   .conversation-previous:hover{color:var(--dourado);text-decoration:underline;}
@@ -194,7 +194,7 @@
     .pilares-grid{grid-template-columns:1fr 1fr;}
     .pilar-card,.pilar-card:nth-child(4),.pilar-card:nth-child(5){grid-column:auto;}
     .about-grid{gap:30px;}
-    .conversation-image{height:330px;order:-1;}
+    .conversation-image{height:auto;order:-1;}
   }
   @media (max-width:680px){
     .nav{display:none;}
